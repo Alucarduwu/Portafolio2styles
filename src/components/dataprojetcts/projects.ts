@@ -7,6 +7,8 @@ import allofme6 from "../../assets/projects/allofme/6.png";
 import allofme7 from "../../assets/projects/allofme/7.png";
 import allofme8 from "../../assets/projects/allofme/8.png";
 import allofme9 from "../../assets/projects/allofme/9.png";
+import senasfigma from "../../assets/projects/lenguajesenas/figma.png"
+import senasfigma2 from "../../assets/projects/lenguajesenas/image.png"
 
 
 export const projects = [
@@ -55,7 +57,7 @@ export const projects = [
     descriptionEn:
       "Mobile prototype exploring sign language translation using computer vision. The project proposes a mobile interface to capture gestures and process them with recognition models as an initial research exploration in accessibility technology.",
 
-    images: ["/images/sign-language-app.png"],
+    images: [senasfigma, senasfigma2],
 
     github: "https://github.com/Alucarduwu/signfinal",
     demo: "",
