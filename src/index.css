@@ -348,28 +348,7 @@ canvas {
     0 0 20px rgba(232, 121, 249, 0.08);
 }
 
-.game-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  padding: 0.58rem 0.9rem;
-  border-radius: 999px;
-  border: 1px solid rgba(249, 168, 212, 0.18);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.075),
-    rgba(255, 255, 255, 0.04)
-  );
-  box-shadow:
-    0 8px 18px rgba(0, 0, 0, 0.18),
-    0 0 0 1px rgba(255, 255, 255, 0.025) inset;
-  color: var(--pink);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
+.game-label,
 .soft-label {
   display: inline-flex;
   align-items: center;
@@ -614,26 +593,229 @@ canvas {
   padding: 1rem;
 }
 
+/* ==============
+   RESPONSIVE
+============== */
+
+@media (max-width: 1024px) {
+  .rpg-window,
+  .game-frame {
+    border-radius: 1.4rem;
+  }
+
+  .rpg-window::before,
+  .game-frame::before {
+    inset: 7px;
+    border-radius: calc(1.4rem - 7px);
+  }
+
+  .rpg-window__bar {
+    padding: 0.82rem 0.9rem;
+  }
+}
+
 @media (max-width: 768px) {
   body::before {
     background-size: 18px 18px;
     opacity: 0.38;
   }
 
+  body::after {
+    filter: blur(14px);
+  }
+
   .game-frame,
   .rpg-window {
-    border-radius: 1.25rem;
+    border-radius: 1.1rem;
+    box-shadow:
+      0 16px 34px rgba(0, 0, 0, 0.26),
+      0 0 0 1px rgba(255, 255, 255, 0.03) inset;
   }
 
   .game-frame::before,
   .rpg-window::before {
-    inset: 6px;
-    border-radius: calc(1.25rem - 6px);
+    inset: 5px;
+    border-radius: calc(1.1rem - 5px);
+  }
+
+  .game-frame::after {
+    top: 10px;
+    right: 12px;
+    width: 7px;
+    height: 7px;
+    box-shadow:
+      -12px 0 0 rgba(196, 181, 253, 0.95),
+      -24px 0 0 rgba(232, 121, 249, 0.9);
+  }
+
+  .rpg-window__bar,
+  .game-header {
+    padding: 0.72rem 0.78rem;
+    gap: 0.55rem;
+  }
+
+  .rpg-window__title,
+  .game-header__title {
+    font-size: 0.62rem;
+    letter-spacing: 0.13em;
+  }
+
+  .rpg-window__dots,
+  .game-header__dots {
+    gap: 0.3rem;
+  }
+
+  .rpg-window__dots span,
+  .game-header__dots span {
+    width: 0.42rem;
+    height: 0.42rem;
+  }
+
+  .game-screen,
+  .game-card {
+    border-radius: 0.95rem;
+  }
+
+  .game-card::before {
+    inset: 5px;
+    border-radius: calc(0.95rem - 4px);
+  }
+
+  .game-label,
+  .soft-label {
+    gap: 0.38rem;
+    padding: 0.46rem 0.72rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+  }
+
+  .pixel-title {
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+
+  .glow-text {
+    text-shadow:
+      0 0 12px rgba(232, 121, 249, 0.14),
+      0 0 20px rgba(196, 181, 253, 0.06);
+  }
+
+  .game-stat {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.38rem;
+    padding: 0.68rem 0.78rem;
+    border-radius: 0.82rem;
+  }
+
+  .game-stat__label {
+    font-size: 0.6rem;
+    letter-spacing: 0.11em;
+  }
+
+  .game-stat__value {
+    font-size: 0.82rem;
+    text-align: left;
+    line-height: 1.35;
+  }
+
+  .game-chip {
+    gap: 0.36rem;
+    padding: 0.38rem 0.62rem;
+    font-size: 0.68rem;
+    line-height: 1.2;
   }
 
   .arcade-button,
   .game-button-secondary {
-    min-height: 2.85rem;
-    padding: 0.8rem 1rem;
+    min-height: 2.5rem;
+    padding: 0.68rem 0.86rem;
+    border-radius: 0.82rem;
+    font-size: 0.82rem;
+    gap: 0.42rem;
+  }
+
+  .arcade-button::before {
+    inset: 3px;
+    border-radius: calc(0.82rem - 3px);
+  }
+
+  .surface-blur {
+    backdrop-filter: blur(10px);
+  }
+
+  .panel-padding {
+    padding: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    min-width: 0;
+  }
+
+  body::before {
+    background-size: 14px 14px;
+    opacity: 0.28;
+  }
+
+  body::after {
+    filter: blur(12px);
+  }
+
+  .rpg-window,
+  .game-frame {
+    border-radius: 0.95rem;
+  }
+
+  .rpg-window::before,
+  .game-frame::before {
+    inset: 4px;
+    border-radius: calc(0.95rem - 4px);
+  }
+
+  .rpg-window__bar,
+  .game-header {
+    padding: 0.62rem 0.68rem;
+  }
+
+  .rpg-window__title,
+  .game-header__title {
+    font-size: 0.56rem;
+    letter-spacing: 0.1em;
+  }
+
+  .game-screen,
+  .game-card {
+    border-radius: 0.82rem;
+  }
+
+  .game-card::before {
+    inset: 4px;
+    border-radius: calc(0.82rem - 4px);
+  }
+
+  .game-label,
+  .soft-label {
+    padding: 0.4rem 0.62rem;
+    font-size: 0.56rem;
+    letter-spacing: 0.08em;
+  }
+
+  .game-chip {
+    padding: 0.34rem 0.56rem;
+    font-size: 0.64rem;
+  }
+
+  .arcade-button,
+  .game-button-secondary {
+    min-height: 2.28rem;
+    padding: 0.6rem 0.74rem;
+    border-radius: 0.72rem;
+    font-size: 0.76rem;
+  }
+
+  .panel-padding {
+    padding: 0.72rem;
   }
 }
