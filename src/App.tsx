@@ -21,24 +21,27 @@ export default function App() {
   }, [language]);
 
   return (
-    <div className="min-h-screen bg-[#09090f] text-slate-100 overflow-x-hidden">
-      <div className="fixed inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(244,114,182,0.16),_transparent_30%),radial-gradient(circle_at_80%_20%,_rgba(168,85,247,0.18),_transparent_25%),radial-gradient(circle_at_30%_80%,_rgba(217,70,239,0.10),_transparent_20%),linear-gradient(to_bottom,#09090f,#0f1020,#09090f)]" />
-        <div className="absolute inset-0 opacity-[0.05] [background-image:linear-gradient(rgba(255,255,255,0.12)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.12)_1px,transparent_1px)] [background-size:42px_42px]" />
+    <div className="relative min-h-screen overflow-x-hidden text-slate-100">
+      <div className="pointer-events-none fixed inset-0 -z-10">
+        <div className="absolute left-[-140px] top-8 h-80 w-80 rounded-full bg-fuchsia-400/12 blur-3xl" />
+        <div className="absolute right-[-100px] top-24 h-96 w-96 rounded-full bg-violet-400/12 blur-3xl" />
+        <div className="absolute bottom-[-80px] left-1/3 h-80 w-80 rounded-full bg-pink-300/10 blur-3xl" />
       </div>
 
-      <Navbar language={language} setLanguage={setLanguage} />
+      <div className="relative mx-auto min-h-screen max-w-[90rem]">
+        <Navbar language={language} setLanguage={setLanguage} />
 
-      <main className="max-w-6xl mx-auto px-6">
-        <Hero language={language} />
-        <About language={language} />
-        <Experience language={language} />
-        <Projects language={language} />
-        <Skills language={language} />
-        <Contact language={language} />
-      </main>
+        <main className="mx-auto w-full max-w-7xl px-4 pb-10 pt-2 sm:px-6 lg:px-8">
+          <Hero language={language} />
+          <About language={language} />
+          <Experience language={language} />
+          <Projects language={language} />
+          <Skills language={language} />
+          <Contact language={language} />
+        </main>
 
-      <Footer language={language} />
+        <Footer language={language} />
+      </div>
     </div>
   );
 }

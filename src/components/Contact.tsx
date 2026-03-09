@@ -1,5 +1,5 @@
 import { motion, type Variants } from "framer-motion";
-import { Mail, Github, FileText, Linkedin, Sparkles } from "lucide-react";
+import { Mail, Github, FileText, Linkedin, Sparkles, Send, Star } from "lucide-react";
 import type { Language } from "../App";
 
 interface ContactProps {
@@ -30,6 +30,10 @@ const content = {
     linkedin: "LinkedIn",
     cvStandard: "CV (Normal)",
     cvHarvard: "CV (Formato Harvard)",
+    panelTitle: "Communication Terminal",
+    linksTitle: "Canales principales",
+    availability: "Disponible para colaboración y oportunidades",
+    quickNote: "Respuesta por correo o LinkedIn",
   },
   en: {
     badge: "Contact",
@@ -41,6 +45,10 @@ const content = {
     linkedin: "LinkedIn",
     cvStandard: "CV (Standard)",
     cvHarvard: "CV (Harvard Format)",
+    panelTitle: "Communication Terminal",
+    linksTitle: "Main channels",
+    availability: "Available for collaboration and opportunities",
+    quickNote: "Reply via email or LinkedIn",
   },
 };
 
@@ -52,71 +60,192 @@ export default function Contact({ language }: ContactProps) {
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        viewport={{ once: true, amount: 0.2 }}
         variants={fadeUp}
-        className="rounded-[32px] border border-fuchsia-300/20 bg-gradient-to-br from-fuchsia-500/10 via-white/[0.05] to-violet-500/10 p-8 md:p-10 shadow-[0_0_40px_rgba(244,114,182,0.14)] backdrop-blur-md"
+        className="rpg-window"
       >
-        <div className="inline-flex items-center gap-2 rounded-full border border-fuchsia-300/20 bg-white/[0.05] px-4 py-2 text-sm text-fuchsia-200 shadow-[0_0_20px_rgba(244,114,182,0.10)]">
-          <Sparkles className="h-4 w-4" />
-          {t.badge}
+        <div className="rpg-window__bar">
+          <div className="rpg-window__title">{t.panelTitle}</div>
+
+          <div className="rpg-window__dots">
+            <span />
+            <span />
+            <span />
+          </div>
         </div>
 
-        <h2 className="mt-4 text-3xl md:text-4xl font-bold text-white">
-          {t.title}
-        </h2>
+        <div className="p-6 md:p-8">
+          <div className="game-label">
+            <Sparkles className="h-4 w-4" />
+            {t.badge}
+          </div>
 
-        <p className="mt-4 max-w-2xl text-slate-300 leading-8">
-          {t.description}
-        </p>
+          <h2 className="pixel-title glow-text mt-5 max-w-4xl text-3xl text-white md:text-5xl">
+            <span className="game-title-gradient">{t.title}</span>
+          </h2>
 
-        <div className="mt-8 flex flex-wrap gap-4">
-          <a
-            href="mailto:anahydlira@gmail.com"
-            className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/[0.06] px-5 py-3 text-sm font-semibold text-white transition-all hover:border-fuchsia-300/25 hover:bg-fuchsia-500/10 hover:text-fuchsia-100"
+          <div className="mt-6 grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+            <motion.div
+              custom={1}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              className="game-screen p-5 md:p-6"
+            >
+              <div className="mb-4 flex flex-wrap gap-2">
+                <span className="game-chip">
+                  <Star className="h-3.5 w-3.5 text-fuchsia-200" />
+                  {t.availability}
+                </span>
+
+                <span className="game-chip">
+                  <Send className="h-3.5 w-3.5 text-violet-200" />
+                  {t.quickNote}
+                </span>
+              </div>
+
+              <p className="max-w-2xl text-left leading-8 text-slate-300">
+                {t.description}
+              </p>
+            </motion.div>
+
+            <motion.div
+              custom={2}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              className="game-card p-5 md:p-6"
+            >
+              <p className="text-left text-xs font-semibold uppercase tracking-[0.24em] text-fuchsia-200/85">
+                {t.linksTitle}
+              </p>
+
+              <div className="game-divider my-4" />
+
+              <div className="space-y-3">
+                <a
+                  href="mailto:anahydlira@gmail.com"
+                  className="game-button-secondary w-full justify-start"
+                >
+                  <Mail className="h-4 w-4" />
+                  {t.email}
+                </a>
+
+                <a
+                  href="https://github.com/Alucarduwu"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="game-button-secondary w-full justify-start"
+                >
+                  <Github className="h-4 w-4" />
+                  {t.github}
+                </a>
+
+                <a
+                  href="https://www.linkedin.com/in/anahi-lozano-de-lira-a4213a187"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="game-button-secondary w-full justify-start"
+                >
+                  <Linkedin className="h-4 w-4" />
+                  {t.linkedin}
+                </a>
+              </div>
+            </motion.div>
+          </div>
+
+          <motion.div
+            custom={3}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="mt-6 grid gap-4 md:grid-cols-2"
           >
-            <Mail className="h-4 w-4" />
-            {t.email}
-          </a>
+            <a
+              href="/Cv Anahi Betzabe Lozano de Lira.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="game-card p-5 transition-transform duration-200 hover:-translate-y-1"
+            >
+              <div className="mb-4 flex items-center justify-between gap-3">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-fuchsia-300/15 bg-gradient-to-br from-fuchsia-500/20 to-violet-500/20 text-fuchsia-200">
+                  <FileText className="h-5 w-5" />
+                </div>
 
-          <a
-            href="https://github.com/Alucarduwu"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/[0.06] px-5 py-3 text-sm font-semibold text-white transition-all hover:border-fuchsia-300/25 hover:bg-fuchsia-500/10 hover:text-fuchsia-100"
-          >
-            <Github className="h-4 w-4" />
-            {t.github}
-          </a>
+                <span className="game-chip">PDF</span>
+              </div>
 
-          <a
-            href="https://www.linkedin.com/in/anahi-lozano-de-lira-a4213a187"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/[0.06] px-5 py-3 text-sm font-semibold text-white transition-all hover:border-fuchsia-300/25 hover:bg-fuchsia-500/10 hover:text-fuchsia-100"
-          >
-            <Linkedin className="h-4 w-4" />
-            {t.linkedin}
-          </a>
+              <p className="text-left text-[11px] uppercase tracking-[0.18em] text-fuchsia-200/80">
+                {language === "es" ? "Documento" : "Document"}
+              </p>
 
-          <a
-            href="/Cv Anahi Betzabe Lozano de Lira.pdf"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-fuchsia-500 via-violet-500 to-pink-400 px-5 py-3 text-sm font-semibold text-white shadow-[0_0_28px_rgba(216,180,254,0.30)] transition-all hover:scale-[1.02]"
-          >
-            <FileText className="h-4 w-4" />
-            {t.cvStandard}
-          </a>
+              <h3 className="mt-2 text-left text-lg font-semibold text-white">
+                {t.cvStandard}
+              </h3>
 
-          <a
-            href="/Anahi_Lozano_Harvard_CV.pdf"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-2xl border border-fuchsia-300/25 bg-fuchsia-500/10 px-5 py-3 text-sm font-semibold text-fuchsia-100 transition-all hover:bg-fuchsia-500/15 hover:border-fuchsia-200/40"
+              <p className="mt-3 text-left text-sm leading-7 text-slate-300">
+                {language === "es"
+                  ? "Versión principal de mi currículum para revisión general."
+                  : "Main version of my resume for general review."}
+              </p>
+            </a>
+
+            <a
+              href="/Anahi_Lozano_Harvard_CV.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="game-card p-5 transition-transform duration-200 hover:-translate-y-1"
+            >
+              <div className="mb-4 flex items-center justify-between gap-3">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-fuchsia-300/15 bg-gradient-to-br from-fuchsia-500/20 to-violet-500/20 text-fuchsia-200">
+                  <FileText className="h-5 w-5" />
+                </div>
+
+                <span className="game-chip">PDF</span>
+              </div>
+
+              <p className="text-left text-[11px] uppercase tracking-[0.18em] text-fuchsia-200/80">
+                {language === "es" ? "Documento" : "Document"}
+              </p>
+
+              <h3 className="mt-2 text-left text-lg font-semibold text-white">
+                {t.cvHarvard}
+              </h3>
+
+              <p className="mt-3 text-left text-sm leading-7 text-slate-300">
+                {language === "es"
+                  ? "Versión académica/profesional en formato Harvard."
+                  : "Academic/professional version in Harvard format."}
+              </p>
+            </a>
+          </motion.div>
+
+          <motion.div
+            custom={4}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="mt-6 flex flex-wrap gap-3"
           >
-            <FileText className="h-4 w-4" />
-            {t.cvHarvard}
-          </a>
+            <a href="mailto:anahydlira@gmail.com" className="arcade-button">
+              <Mail className="h-4 w-4" />
+              {t.email}
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/anahi-lozano-de-lira-a4213a187"
+              target="_blank"
+              rel="noreferrer"
+              className="game-button-secondary"
+            >
+              <Linkedin className="h-4 w-4" />
+              {t.linkedin}
+            </a>
+          </motion.div>
         </div>
       </motion.div>
     </section>

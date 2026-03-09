@@ -1,4 +1,4 @@
-import { Heart } from "lucide-react";
+import { Heart, Sparkles } from "lucide-react";
 import type { Language } from "../App";
 
 interface FooterProps {
@@ -9,10 +9,12 @@ const content = {
   es: {
     built: "Construido con",
     rights: "Todos los derechos reservados.",
+    panel: "System Status",
   },
   en: {
     built: "Built with",
     rights: "All rights reserved.",
+    panel: "System Status",
   },
 };
 
@@ -20,32 +22,56 @@ export default function Footer({ language }: FooterProps) {
   const t = content[language];
 
   return (
-    <footer className="mt-16 border-t border-white/10 bg-gradient-to-b from-transparent to-black/30 py-10 px-6">
-      <div className="max-w-6xl mx-auto text-center text-sm text-slate-400">
+    <footer className="mt-20 pb-10 px-6">
+      <div className="max-w-6xl mx-auto">
 
-        <p className="flex items-center justify-center gap-2 text-slate-400">
-          © 2026 <span className="text-white font-semibold">Anahí Lozano</span>
-          <Heart className="h-4 w-4 text-pink-400 opacity-80" />
-        </p>
+        <div className="rpg-window">
 
-        <p className="mt-3">
-          {t.built}{" "}
-          <span className="text-fuchsia-300 font-medium">
-            React
-          </span>
-          ,{" "}
-          <span className="text-fuchsia-300 font-medium">
-            TypeScript
-          </span>{" "}
-          &{" "}
-          <span className="text-fuchsia-300 font-medium">
-            Tailwind CSS
-          </span>
-        </p>
+          <div className="rpg-window__bar">
+            <div className="rpg-window__title">{t.panel}</div>
 
-        <p className="mt-2 text-xs text-slate-500">
-          {t.rights}
-        </p>
+            <div className="rpg-window__dots">
+              <span />
+              <span />
+              <span />
+            </div>
+          </div>
+
+          <div className="p-6 text-center">
+
+            <p className="flex items-center justify-center gap-2 text-sm text-slate-300">
+              © 2026 
+              <span className="font-semibold text-white">
+                Anahí Lozano
+              </span>
+
+              <Heart className="h-4 w-4 text-pink-400 opacity-80" />
+            </p>
+
+            <div className="game-divider my-4" />
+
+            <p className="flex flex-wrap items-center justify-center gap-2 text-sm text-slate-300">
+              {t.built}
+
+              <span className="game-chip">React</span>
+              <span className="game-chip">TypeScript</span>
+              <span className="game-chip">Tailwind CSS</span>
+            </p>
+
+            <p className="mt-3 text-xs text-slate-500">
+              {t.rights}
+            </p>
+
+            <div className="mt-4 flex justify-center">
+              <span className="game-chip flex items-center gap-2">
+                <Sparkles className="h-3 w-3 text-fuchsia-200" />
+                Portfolio v1.0
+              </span>
+            </div>
+
+          </div>
+
+        </div>
 
       </div>
     </footer>

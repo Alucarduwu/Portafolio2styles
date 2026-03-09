@@ -6,6 +6,9 @@ import {
   Code2,
   Layers3,
   Smartphone,
+  Heart,
+  Shield,
+  Star,
 } from "lucide-react";
 import type { Language } from "../App";
 
@@ -28,11 +31,11 @@ const fadeUp: Variants = {
 
 const content = {
   es: {
-    badge: "Full Stack Developer • Web • Mobile • Backend",
+    badge: "Player Profile • Full Stack Developer",
     intro: "Hola, soy Anahí Betzabé Lozano de Lira",
     title1: "Diseño y desarrollo",
     title2: "productos digitales",
-    title3: "modernos, funcionales y con una ejecución visual sólida.",
+    title3: "modernos, funcionales y visualmente sólidos.",
     description:
       "Soy desarrolladora Full Stack enfocada en crear experiencias web y móviles con una base técnica fuerte y una estética cuidada. Trabajo con Angular, Node.js, React, MySQL, APIs REST y Kotlin para construir soluciones que combinen interfaz, lógica, estructura y escalabilidad.",
     subdescription:
@@ -40,6 +43,13 @@ const content = {
     primary: "Ver proyectos",
     secondary: "Contáctame",
     tertiary: "GitHub",
+    stats: {
+      role: "Full Stack Developer",
+      level: "Lv. 26",
+      className: "Web • Mobile • Backend",
+      affinity: "UI / UX + Engineering",
+      status: "Disponible para nuevos retos",
+    },
     cards: [
       {
         title: "Stack principal",
@@ -59,11 +69,11 @@ const content = {
     ],
   },
   en: {
-    badge: "Full Stack Developer • Web • Mobile • Backend",
+    badge: "Player Profile • Full Stack Developer",
     intro: "Hi, I’m Anahí Betzabé Lozano de Lira",
     title1: "I design and build",
     title2: "digital products",
-    title3: "that are modern, functional and visually well executed.",
+    title3: "that are modern, functional and visually solid.",
     description:
       "I am a Full Stack Developer focused on creating web and mobile experiences with strong technical foundations and refined visual execution. I work with Angular, Node.js, React, MySQL, REST APIs and Kotlin to build solutions that combine interface, logic, structure and scalability.",
     subdescription:
@@ -71,6 +81,13 @@ const content = {
     primary: "View projects",
     secondary: "Contact me",
     tertiary: "GitHub",
+    stats: {
+      role: "Full Stack Developer",
+      level: "Lv. 24",
+      className: "Web • Mobile • Backend",
+      affinity: "UI / UX + Engineering",
+      status: "Open to new challenges",
+    },
     cards: [
       {
         title: "Core stack",
@@ -96,133 +113,230 @@ export default function Hero({ language }: HeroProps) {
 
   return (
     <section
-  id="home"
-  className="relative flex min-h-[90vh] items-center overflow-hidden py-20 md:py-24"
->
-  <div className="absolute inset-0 -z-10">
-    <div className="absolute left-[-120px] top-16 h-72 w-72 rounded-full bg-fuchsia-400/15 blur-3xl" />
-    <div className="absolute right-[-80px] top-12 h-80 w-80 rounded-full bg-violet-400/15 blur-3xl" />
-    <div className="absolute bottom-[-40px] left-1/3 h-72 w-72 rounded-full bg-pink-300/10 blur-3xl" />
-  </div>
-
-  <div className="w-full max-w-5xl">
-
-    <motion.div
-      initial="hidden"
-      animate="visible"
-      variants={fadeUp}
-      className="inline-flex items-center gap-2 rounded-full border border-fuchsia-300/20 bg-white/[0.05] px-4 py-1.5 text-xs font-medium text-fuchsia-200 backdrop-blur-md"
+      id="home"
+      className="relative flex min-h-[100vh] items-center overflow-hidden py-16 md:py-24"
     >
-      <Sparkles className="h-3.5 w-3.5" />
-      {t.badge}
-    </motion.div>
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute left-[-120px] top-10 h-72 w-72 rounded-full bg-fuchsia-400/15 blur-3xl" />
+        <div className="absolute right-[-80px] top-16 h-80 w-80 rounded-full bg-violet-400/15 blur-3xl" />
+        <div className="absolute bottom-[-40px] left-1/3 h-72 w-72 rounded-full bg-pink-300/10 blur-3xl" />
+      </div>
 
-    <motion.p
-      custom={1}
-      initial="hidden"
-      animate="visible"
-      variants={fadeUp}
-      className="mt-6 text-xs uppercase tracking-[0.25em] text-slate-400"
-    >
-      {t.intro}
-    </motion.p>
+      <div className="w-full max-w-6xl">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          className="game-label"
+        >
+          <Sparkles className="h-3.5 w-3.5" />
+          {t.badge}
+        </motion.div>
 
-    <motion.h1
-      custom={2}
-      initial="hidden"
-      animate="visible"
-      variants={fadeUp}
-      className="mt-4 max-w-3xl text-3xl font-bold leading-tight text-white md:text-4xl"
-    >
-      {t.title1}{" "}
-      <span className="bg-gradient-to-r from-pink-300 via-fuchsia-300 to-violet-300 bg-clip-text text-transparent">
-        {t.title2}
-      </span>
-      <br />
-      <span className="text-slate-200">{t.title3}</span>
-    </motion.h1>
-
-    <motion.div
-      custom={3}
-      initial="hidden"
-      animate="visible"
-      variants={fadeUp}
-      className="mt-6 max-w-2xl"
-    >
-      <p className="text-sm leading-7 text-slate-300 md:text-base">
-        {t.description}
-      </p>
-
-      <p className="mt-3 text-sm text-slate-400">
-        {t.subdescription}
-      </p>
-    </motion.div>
-
-    <motion.div
-      custom={4}
-      initial="hidden"
-      animate="visible"
-      variants={fadeUp}
-      className="mt-8 flex flex-wrap gap-3"
-    >
-      <a
-        href="#projects"
-        className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-fuchsia-500 via-violet-500 to-pink-400 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_0_20px_rgba(216,180,254,0.25)] transition-all hover:scale-[1.02]"
-      >
-        {t.primary}
-        <ArrowRight className="h-4 w-4" />
-      </a>
-
-      <a
-        href="#contact"
-        className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.05] px-5 py-2.5 text-sm font-semibold text-slate-200 backdrop-blur-md transition-all hover:bg-white/[0.08]"
-      >
-        {t.secondary}
-      </a>
-
-      <a
-        href="https://github.com/"
-        target="_blank"
-        rel="noreferrer"
-        className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-5 py-2.5 text-sm font-semibold text-slate-300 transition-all hover:bg-white/[0.07]"
-      >
-        <Github className="h-4 w-4" />
-        {t.tertiary}
-      </a>
-    </motion.div>
-
-    <motion.div
-      custom={5}
-      initial="hidden"
-      animate="visible"
-      variants={fadeUp}
-      className="mt-12 grid grid-cols-1 gap-3 md:grid-cols-3"
-    >
-      {t.cards.map((card) => {
-        const Icon = card.icon;
-
-        return (
-          <div
-            key={card.title}
-            className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 backdrop-blur-md transition-all hover:border-fuchsia-300/20"
+        <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-[320px_minmax(0,1fr)]">
+          <motion.aside
+            custom={1}
+            initial="hidden"
+            animate="visible"
+            variants={fadeUp}
+            className="rpg-window"
           >
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-fuchsia-500/20 to-violet-500/20 text-fuchsia-200">
-              <Icon className="h-4 w-4" />
+            <div className="rpg-window__bar">
+              <div className="rpg-window__title">Player Data</div>
+              <div className="rpg-window__dots">
+                <span />
+                <span />
+                <span />
+              </div>
             </div>
 
-            <p className="mt-3 text-xs uppercase tracking-wide text-fuchsia-200/80">
-              {card.title}
-            </p>
+            <div className="space-y-4 p-5">
+              <div className="game-screen p-4">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-fuchsia-300/20 bg-gradient-to-br from-fuchsia-400/20 to-violet-400/20 text-fuchsia-200">
+                    <Heart className="h-5 w-5" />
+                  </div>
 
-            <p className="mt-1 text-sm font-semibold text-white">
-              {card.value}
-            </p>
-          </div>
-        );
-      })}
-    </motion.div>
+                  <div className="min-w-0 text-left">
+                    <p className="text-xs uppercase tracking-[0.18em] text-fuchsia-200/75">
+                      {language === "es" ? "Jugador" : "Player"}
+                    </p>
+                    <p className="truncate text-sm font-semibold text-white">
+                      Anahí Betzabé
+                    </p>
+                  </div>
+                </div>
+              </div>
 
-  </div>
-</section>
+              <div className="space-y-3">
+                <div className="game-stat">
+                  <span className="game-stat__label">Role</span>
+                  <span className="game-stat__value">{t.stats.role}</span>
+                </div>
+
+                <div className="game-stat">
+                  <span className="game-stat__label">Level</span>
+                  <span className="game-stat__value">{t.stats.level}</span>
+                </div>
+
+                <div className="game-stat">
+                  <span className="game-stat__label">Class</span>
+                  <span className="game-stat__value">{t.stats.className}</span>
+                </div>
+
+                <div className="game-stat">
+                  <span className="game-stat__label">Affinity</span>
+                  <span className="game-stat__value">{t.stats.affinity}</span>
+                </div>
+              </div>
+
+              <div className="game-divider" />
+
+              <div className="space-y-3 text-left">
+                <div className="game-chip">
+                  <Shield className="h-3.5 w-3.5 text-fuchsia-200" />
+                  {t.stats.status}
+                </div>
+
+                <div className="game-chip">
+                  <Star className="h-3.5 w-3.5 text-violet-200" />
+                  {language === "es" ? "Frontend + Backend" : "Frontend + Backend"}
+                </div>
+
+                <div className="game-chip">
+                  <Sparkles className="h-3.5 w-3.5 text-pink-200" />
+                  {language === "es" ? "Diseño cuidado" : "Polished design"}
+                </div>
+              </div>
+            </div>
+          </motion.aside>
+
+          <motion.div
+            custom={2}
+            initial="hidden"
+            animate="visible"
+            variants={fadeUp}
+            className="rpg-window"
+          >
+            <div className="rpg-window__bar">
+              <div className="rpg-window__title">Main Quest</div>
+              <div className="rpg-window__dots">
+                <span />
+                <span />
+                <span />
+              </div>
+            </div>
+
+            <div className="p-5 md:p-7">
+              <motion.p
+                custom={3}
+                initial="hidden"
+                animate="visible"
+                variants={fadeUp}
+                className="text-left text-xs uppercase tracking-[0.28em] text-slate-400"
+              >
+                {t.intro}
+              </motion.p>
+
+              <motion.h1
+                custom={4}
+                initial="hidden"
+                animate="visible"
+                variants={fadeUp}
+                className="pixel-title glow-text mt-4 text-left text-4xl text-white md:text-6xl"
+              >
+                <span className="block">{t.title1}</span>
+                <span className="game-title-gradient block">{t.title2}</span>
+                <span className="mt-2 block text-slate-200">{t.title3}</span>
+              </motion.h1>
+
+              <motion.div
+                custom={5}
+                initial="hidden"
+                animate="visible"
+                variants={fadeUp}
+                className="mt-6"
+              >
+                <div className="game-screen p-5 md:p-6">
+                  <p className="text-left text-sm leading-7 text-slate-300 md:text-base">
+                    {t.description}
+                  </p>
+
+                  <p className="mt-3 text-left text-sm leading-7 text-slate-400">
+                    {t.subdescription}
+                  </p>
+                </div>
+              </motion.div>
+
+              <motion.div
+                custom={6}
+                initial="hidden"
+                animate="visible"
+                variants={fadeUp}
+                className="mt-8 flex flex-wrap gap-3"
+              >
+                <a href="#projects" className="arcade-button">
+                  {t.primary}
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+
+                <a href="#contact" className="game-button-secondary">
+                  {t.secondary}
+                </a>
+
+                <a
+                  href="https://github.com/alucarduwu"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="game-button-secondary"
+                >
+                  <Github className="h-4 w-4" />
+                  {t.tertiary}
+                </a>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+
+        <motion.div
+          custom={7}
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3"
+        >
+          {t.cards.map((card) => {
+            const Icon = card.icon;
+
+            return (
+              <motion.div
+                key={card.title}
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.2 }}
+                className="game-card p-5 text-left"
+              >
+                <div className="mb-4 flex items-center justify-between gap-3">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-fuchsia-300/15 bg-gradient-to-br from-fuchsia-500/20 to-violet-500/20 text-fuchsia-200">
+                    <Icon className="h-4 w-4" />
+                  </div>
+
+                  <span className="game-chip">
+                    {language === "es" ? "Skill" : "Skill"}
+                  </span>
+                </div>
+
+                <p className="text-[11px] uppercase tracking-[0.2em] text-fuchsia-200/80">
+                  {card.title}
+                </p>
+
+                <p className="mt-2 text-sm font-semibold leading-6 text-white">
+                  {card.value}
+                </p>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+      </div>
+    </section>
   );
 }
