@@ -63,7 +63,7 @@ const content = {
       },
       {
         title: "Mobile",
-        value: "Aplicaciones móviles con Kotlin",
+        value: "Aplicaciones móviles con Kotlin, JavaScript and React Native (Multiplataform)",
         icon: Smartphone,
       },
     ],
@@ -101,7 +101,7 @@ const content = {
       },
       {
         title: "Mobile",
-        value: "Mobile applications with Kotlin",
+        value: "Mobile applications with Kotlin JavaScript y React Native (Multiplataforma)",
         icon: Smartphone,
       },
     ],
