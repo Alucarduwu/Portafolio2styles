@@ -6,6 +6,8 @@ import {
   ServerCog,
   Smartphone,
   Database,
+  Shield,
+  Star,
 } from "lucide-react";
 import type { Language } from "../App";
 
@@ -39,7 +41,7 @@ const content = {
     cardTitle: "Fortalezas clave",
     highlights: [
       "Desarrollo Full Stack web",
-      "Aplicaciones móviles con Kotlin,Java y React Native",
+      "Aplicaciones móviles con Kotlin, Java y React Native",
       "APIs REST, autenticación JWT y RBAC",
       "Bases de datos relacionales, SQL y modelado",
       "UI cuidada, responsive y orientada a producto",
@@ -132,28 +134,56 @@ export default function About({ language }: AboutProps) {
         viewport={{ once: true, amount: 0.2 }}
         variants={fadeUp}
       >
-        <div className="inline-flex items-center gap-2 rounded-full border border-fuchsia-300/20 bg-white/[0.06] px-4 py-2 text-sm font-medium text-fuchsia-200 shadow-[0_0_24px_rgba(244,114,182,0.10)] backdrop-blur-md">
+        <div className="game-label">
           <Sparkles className="h-4 w-4" />
           {t.badge}
         </div>
 
-        <h2 className="mt-5 max-w-4xl text-3xl font-semibold leading-tight text-white md:text-5xl">
-          {t.title}
+        <h2 className="pixel-title glow-text mt-5 max-w-5xl text-3xl text-white md:text-5xl">
+          <span className="game-title-gradient">{t.title}</span>
         </h2>
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-[1.25fr_0.75fr]">
+        <div className="mt-10 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
           <motion.div
             custom={1}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="rounded-[32px] border border-white/10 bg-white/[0.05] p-7 text-slate-300 shadow-[0_10px_40px_rgba(168,85,247,0.10)] backdrop-blur-md md:p-9"
+            className="rpg-window"
           >
-            <div className="space-y-5 text-[15px] leading-8 md:text-base">
-              <p>{t.paragraph1}</p>
-              <p>{t.paragraph2}</p>
-              <p>{t.paragraph3}</p>
+            <div className="rpg-window__bar">
+              <div className="rpg-window__title">
+                {language === "es" ? "Background" : "Background"}
+              </div>
+
+              <div className="rpg-window__dots">
+                <span />
+                <span />
+                <span />
+              </div>
+            </div>
+
+            <div className="space-y-5 p-5 md:p-7">
+              <div className="game-screen p-5">
+                <div className="mb-4 flex flex-wrap gap-2">
+                  <span className="game-chip">
+                    <Shield className="h-3.5 w-3.5 text-fuchsia-200" />
+                    {language === "es" ? "Perfil técnico" : "Technical profile"}
+                  </span>
+
+                  <span className="game-chip">
+                    <Star className="h-3.5 w-3.5 text-violet-200" />
+                    {language === "es" ? "Producto + diseño" : "Product + design"}
+                  </span>
+                </div>
+
+                <div className="space-y-5 text-left text-[15px] leading-8 text-slate-300 md:text-base">
+                  <p>{t.paragraph1}</p>
+                  <p>{t.paragraph2}</p>
+                  <p>{t.paragraph3}</p>
+                </div>
+              </div>
             </div>
           </motion.div>
 
@@ -163,25 +193,30 @@ export default function About({ language }: AboutProps) {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="rounded-[32px] border border-fuchsia-300/20 bg-gradient-to-b from-fuchsia-500/12 via-violet-500/10 to-white/[0.03] p-7 shadow-[0_10px_40px_rgba(244,114,182,0.12)] backdrop-blur-md md:p-8"
+            className="rpg-window"
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-fuchsia-200/90">
-              {t.cardTitle}
-            </p>
+            <div className="rpg-window__bar">
+              <div className="rpg-window__title">{t.cardTitle}</div>
 
-            <ul className="mt-6 space-y-3">
-              {t.highlights.map((item) => (
-                <li
-                  key={item}
-                  className="group rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-sm text-slate-100 shadow-[0_0_18px_rgba(216,180,254,0.06)] transition-all duration-300 hover:border-fuchsia-300/25 hover:bg-white/[0.05]"
-                >
-                  <span className="inline-flex items-start gap-3">
-                    <span className="mt-[7px] h-2 w-2 rounded-full bg-gradient-to-r from-fuchsia-300 to-violet-300 shadow-[0_0_12px_rgba(244,114,182,0.6)]" />
-                    <span>{item}</span>
-                  </span>
-                </li>
-              ))}
-            </ul>
+              <div className="rpg-window__dots">
+                <span />
+                <span />
+                <span />
+              </div>
+            </div>
+
+            <div className="p-5 md:p-6">
+              <div className="space-y-3">
+                {t.highlights.map((item) => (
+                  <div key={item} className="game-stat">
+                    <span className="game-stat__label">
+                      {language === "es" ? "Skill" : "Skill"}
+                    </span>
+                    <span className="game-stat__value">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </motion.div>
         </div>
 
@@ -197,17 +232,23 @@ export default function About({ language }: AboutProps) {
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={fadeUp}
-                className="group rounded-[28px] border border-white/10 bg-white/[0.04] p-6 shadow-[0_8px_30px_rgba(216,180,254,0.08)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:border-fuchsia-300/25 hover:bg-white/[0.06] hover:shadow-[0_16px_36px_rgba(244,114,182,0.10)]"
+                className="game-card p-5 text-left"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-br from-fuchsia-500/20 to-violet-500/20 text-fuchsia-200 shadow-[0_0_20px_rgba(244,114,182,0.12)] transition-transform duration-300 group-hover:scale-105">
-                  <Icon className="h-5 w-5" />
+                <div className="mb-4 flex items-center justify-between gap-3">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-fuchsia-300/15 bg-gradient-to-br from-fuchsia-500/20 to-violet-500/20 text-fuchsia-200">
+                    <Icon className="h-5 w-5" />
+                  </div>
+
+                  
                 </div>
 
-                <h3 className="mt-4 text-base font-semibold text-white md:text-lg">
+                <h3 className="text-base font-semibold text-white md:text-lg">
                   {card.title}
                 </h3>
 
-                <p className="mt-3 text-sm leading-7 text-slate-300">
+                <div className="game-divider my-4" />
+
+                <p className="text-sm leading-7 text-slate-300">
                   {card.text}
                 </p>
               </motion.div>

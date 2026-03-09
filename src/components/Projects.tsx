@@ -7,6 +7,8 @@ import {
   ChevronLeft,
   ChevronRight,
   X,
+  FolderOpen,
+  Image as ImageIcon,
 } from "lucide-react";
 import { projects } from "../components/dataprojetcts/projects";
 import type { Language } from "../App";
@@ -104,6 +106,10 @@ const content = {
     close: "Cerrar",
     screenshots: "Capturas del proyecto",
     openGallery: "Ver galería",
+    panelTitle: "Mission Select",
+    projectLabel: "Proyecto",
+    resources: "Recursos",
+    preview: "Vista previa",
   },
   en: {
     badge: "Projects",
@@ -116,6 +122,10 @@ const content = {
     close: "Close",
     screenshots: "Project screenshots",
     openGallery: "View gallery",
+    panelTitle: "Mission Select",
+    projectLabel: "Project",
+    resources: "Resources",
+    preview: "Preview",
   },
 };
 
@@ -203,24 +213,24 @@ export default function Projects({ language }: ProjectsProps) {
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        viewport={{ once: true, amount: 0.2 }}
         variants={fadeUp}
       >
-        <div className="inline-flex items-center gap-2 rounded-full border border-fuchsia-300/20 bg-white/[0.05] px-4 py-2 text-sm text-fuchsia-200 shadow-[0_0_22px_rgba(244,114,182,0.10)] backdrop-blur-md">
+        <div className="game-label">
           <Sparkles className="h-4 w-4" />
           {t.badge}
         </div>
 
-        <div className="mt-4 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-          <h2 className="text-3xl font-bold text-white md:text-4xl">
-            {t.title}
+        <div className="mt-5 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+          <h2 className="pixel-title glow-text text-3xl text-white md:text-5xl">
+            <span className="game-title-gradient">{t.title}</span>
           </h2>
 
           <div className="flex items-center gap-3">
             <button
               onClick={goPrev}
               aria-label={t.previous}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.05] text-slate-200 shadow-[0_0_18px_rgba(216,180,254,0.08)] backdrop-blur-md transition-all duration-300 hover:border-fuchsia-300/20 hover:bg-white/[0.08] hover:text-fuchsia-200"
+              className="game-button-secondary h-11 w-11 shrink-0 p-0"
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
@@ -228,7 +238,7 @@ export default function Projects({ language }: ProjectsProps) {
             <button
               onClick={goNext}
               aria-label={t.next}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.05] text-slate-200 shadow-[0_0_18px_rgba(216,180,254,0.08)] backdrop-blur-md transition-all duration-300 hover:border-fuchsia-300/20 hover:bg-white/[0.08] hover:text-fuchsia-200"
+              className="game-button-secondary h-11 w-11 shrink-0 p-0"
             >
               <ChevronRight className="h-5 w-5" />
             </button>
@@ -244,7 +254,7 @@ export default function Projects({ language }: ProjectsProps) {
               initial="enter"
               animate="center"
               exit="exit"
-              className="grid grid-cols-1 gap-6 md:grid-cols-2"
+              className="grid grid-cols-1 gap-6 xl:grid-cols-2"
             >
               {visibleProjects.map((project) => {
                 const realProjectIndex = projects.findIndex(
@@ -266,78 +276,134 @@ export default function Projects({ language }: ProjectsProps) {
                   <motion.article
                     key={`${project.titleEn}-${current}`}
                     layout
-                    className="group overflow-hidden rounded-[30px] border border-white/10 bg-white/[0.05] shadow-[0_0_28px_rgba(216,180,254,0.10)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-fuchsia-300/20 hover:shadow-[0_0_34px_rgba(244,114,182,0.14)]"
+                    className="rpg-window overflow-hidden"
                   >
-                    <button
-                      type="button"
-                      onClick={() => openGallery(realProjectIndex)}
-                      className="relative block h-56 w-full overflow-hidden text-left"
-                    >
-                      <img
-                        src={previewImage}
-                        alt={title}
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#09090f]/90 via-[#09090f]/40 to-transparent" />
+                    <div className="rpg-window__bar">
+                      <div className="rpg-window__title">
+                        {t.panelTitle} #{String(realProjectIndex + 1).padStart(2, "0")}
+                      </div>
 
-                      <div className="absolute inset-x-0 bottom-0 p-5">
-                        <div className="flex items-end justify-between gap-3">
-                          <div className="min-w-0">
-                            <p className="line-clamp-1 text-lg font-semibold text-white">
-                              {title}
-                            </p>
-                            <p className="mt-1 line-clamp-1 text-sm text-fuchsia-200/90">
-                              {project.stack}
+                      <div className="rpg-window__dots">
+                        <span />
+                        <span />
+                        <span />
+                      </div>
+                    </div>
+
+                    <div className="p-5 md:p-6">
+                      <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_220px]">
+                        <div className="space-y-5">
+                          <button
+                            type="button"
+                            onClick={() => openGallery(realProjectIndex)}
+                            className="game-screen group relative block h-64 w-full overflow-hidden rounded-[1.25rem] text-left"
+                          >
+                            <img
+                              src={previewImage}
+                              alt={title}
+                              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            />
+
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#09090f]/90 via-[#09090f]/40 to-transparent" />
+
+                            <div className="absolute inset-x-0 bottom-0 p-5">
+                              <div className="flex flex-wrap items-end justify-between gap-3">
+                                <div className="min-w-0">
+                                  <p className="text-[11px] uppercase tracking-[0.2em] text-fuchsia-200/75">
+                                    {t.preview}
+                                  </p>
+                                  <p className="mt-1 line-clamp-1 text-lg font-semibold text-white">
+                                    {title}
+                                  </p>
+                                </div>
+
+                                {project.images?.length > 1 && (
+                                  <span className="game-chip">
+                                    <ImageIcon className="h-3.5 w-3.5 text-fuchsia-200" />
+                                    {project.images.length} {t.gallery}
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+                          </button>
+
+                          <div className="game-screen p-5">
+                            <div className="mb-3 flex flex-wrap gap-2">
+                              <span className="game-chip">
+                                <FolderOpen className="h-3.5 w-3.5 text-fuchsia-200" />
+                                {t.projectLabel}
+                              </span>
+
+                              <span className="game-chip">{project.stack}</span>
+                            </div>
+
+                            <p className="text-left text-sm leading-7 text-slate-300">
+                              {description}
                             </p>
                           </div>
-
-                          {project.images?.length > 1 && (
-                            <span className="shrink-0 rounded-full border border-white/10 bg-black/40 px-3 py-1 text-xs font-medium text-white/90 backdrop-blur-md">
-                              {project.images.length} {t.gallery}
-                            </span>
-                          )}
                         </div>
-                      </div>
-                    </button>
 
-                    <div className="p-6 pt-5">
-                      <p className="text-sm leading-7 text-slate-300">
-                        {description}
-                      </p>
+                        <div className="space-y-4">
+                          <div className="game-card p-4">
+                            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-fuchsia-200/85">
+                              {t.resources}
+                            </p>
 
-                      <div className="mt-6 flex flex-wrap items-center gap-4">
-                        <button
-                          type="button"
-                          onClick={() => openGallery(realProjectIndex)}
-                          className="inline-flex items-center gap-2 rounded-full border border-fuchsia-300/20 bg-fuchsia-500/10 px-4 py-2 text-sm font-semibold text-fuchsia-200 transition-all duration-300 hover:border-fuchsia-300/35 hover:bg-fuchsia-500/15"
-                        >
-                          <Sparkles className="h-4 w-4" />
-                          {t.openGallery}
-                        </button>
+                            <div className="game-divider my-4" />
 
-                        {project.github && (
-                          <a
-                            href={project.github}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="inline-flex items-center gap-2 text-sm font-semibold text-white/90 transition-colors hover:text-fuchsia-300"
-                          >
-                            <Github className="h-4 w-4" />
-                            {t.github}
-                          </a>
-                        )}
+                            <div className="flex flex-col gap-3">
+                              <button
+                                type="button"
+                                onClick={() => openGallery(realProjectIndex)}
+                                className="game-button-secondary w-full justify-start"
+                              >
+                                <Sparkles className="h-4 w-4" />
+                                {t.openGallery}
+                              </button>
 
-                        {project.demo && (
-                          <a
-                            href={project.demo}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="inline-flex items-center gap-2 text-sm font-semibold text-white/90 transition-colors hover:text-fuchsia-300"
-                          >
-                            <ExternalLink className="h-4 w-4" />
-                            {t.demo}
-                          </a>
-                        )}
+                              {project.github && (
+                                <a
+                                  href={project.github}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="game-button-secondary w-full justify-start"
+                                >
+                                  <Github className="h-4 w-4" />
+                                  {t.github}
+                                </a>
+                              )}
+
+                              {project.demo && (
+                                <a
+                                  href={project.demo}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="arcade-button w-full justify-start"
+                                >
+                                  <ExternalLink className="h-4 w-4" />
+                                  {t.demo}
+                                </a>
+                              )}
+                            </div>
+                          </div>
+
+                          <div className="game-card p-4">
+                            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-fuchsia-200/85">
+                              {language === "es" ? "Estado" : "Status"}
+                            </p>
+
+                            <div className="game-divider my-4" />
+
+                            <div className="flex flex-wrap gap-2">
+                              <span className="game-chip">
+                                {language === "es" ? "Activo" : "Active"}
+                              </span>
+                              <span className="game-chip">
+                                {language === "es" ? "Portfolio" : "Portfolio"}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </motion.article>
@@ -358,10 +424,10 @@ export default function Projects({ language }: ProjectsProps) {
                   setCurrent(index);
                 }}
                 aria-label={`Go to project ${index + 1}`}
-                className={`h-2.5 rounded-full transition-all duration-300 ${
+                className={`transition-all duration-300 ${
                   isActive
-                    ? "w-8 bg-gradient-to-r from-fuchsia-300 to-violet-300 shadow-[0_0_12px_rgba(244,114,182,0.35)]"
-                    : "w-2.5 bg-white/20 hover:bg-white/35"
+                    ? "h-3 w-10 rounded-full bg-gradient-to-r from-fuchsia-300 to-violet-300 shadow-[0_0_12px_rgba(244,114,182,0.35)]"
+                    : "h-3 w-3 rounded-full bg-white/20 hover:bg-white/35"
                 }`}
               />
             );
@@ -372,7 +438,7 @@ export default function Projects({ language }: ProjectsProps) {
       <AnimatePresence>
         {activeProject && activeProject.images?.length > 0 && (
           <motion.div
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-[#05050a]/80 px-3 py-4 backdrop-blur-xl md:px-6 md:py-6"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-[#05050a]/82 px-3 py-4 backdrop-blur-xl md:px-6 md:py-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -384,9 +450,9 @@ export default function Projects({ language }: ProjectsProps) {
               animate="visible"
               exit="exit"
               onClick={(e) => e.stopPropagation()}
-              className="relative flex h-[92vh] w-full max-w-6xl flex-col overflow-hidden rounded-[32px] border border-white/10 bg-[linear-gradient(180deg,rgba(11,11,18,0.96),rgba(7,7,14,0.98))] shadow-[0_0_60px_rgba(244,114,182,0.10)]"
+              className="rpg-window relative flex h-[92vh] w-full max-w-6xl flex-col overflow-hidden"
             >
-              <div className="flex items-start justify-between gap-4 border-b border-white/10 px-5 py-4 md:px-7 md:py-5">
+              <div className="rpg-window__bar">
                 <div className="min-w-0">
                   <p className="text-[11px] uppercase tracking-[0.24em] text-fuchsia-200/75 md:text-xs">
                     {t.screenshots}
@@ -396,17 +462,25 @@ export default function Projects({ language }: ProjectsProps) {
                   </h3>
                 </div>
 
-                <button
-                  onClick={closeGallery}
-                  aria-label={t.close}
-                  className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-slate-200 transition-all duration-300 hover:border-fuchsia-300/20 hover:bg-white/[0.06] hover:text-fuchsia-200"
-                >
-                  <X className="h-5 w-5" />
-                </button>
+                <div className="flex items-center gap-3">
+                  <div className="rpg-window__dots">
+                    <span />
+                    <span />
+                    <span />
+                  </div>
+
+                  <button
+                    onClick={closeGallery}
+                    aria-label={t.close}
+                    className="game-button-secondary h-11 w-11 shrink-0 p-0"
+                  >
+                    <X className="h-5 w-5" />
+                  </button>
+                </div>
               </div>
 
               <div className="flex min-h-0 flex-1 flex-col gap-4 p-4 md:gap-5 md:p-6">
-                <div className="relative flex min-h-0 flex-1 items-center justify-center overflow-hidden rounded-[28px] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(244,114,182,0.07),transparent_28%),linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01))] px-3 py-4 md:px-6 md:py-6">
+                <div className="game-screen relative flex min-h-0 flex-1 items-center justify-center overflow-hidden rounded-[1.5rem] px-3 py-4 md:px-6 md:py-6">
                   <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.04),transparent_55%)]" />
 
                   <AnimatePresence mode="wait">
@@ -418,7 +492,7 @@ export default function Projects({ language }: ProjectsProps) {
                       initial="hidden"
                       animate="visible"
                       exit="exit"
-                      className="relative z-10 mx-auto max-h-full w-auto max-w-full rounded-[24px] border border-white/10 object-contain shadow-[0_14px_45px_rgba(0,0,0,0.35)]"
+                      className="relative z-10 mx-auto max-h-full w-auto max-w-full rounded-[1.25rem] border border-white/10 object-contain shadow-[0_14px_45px_rgba(0,0,0,0.35)]"
                     />
                   </AnimatePresence>
 
@@ -427,7 +501,7 @@ export default function Projects({ language }: ProjectsProps) {
                       <button
                         onClick={goToPrevImage}
                         aria-label={t.previous}
-                        className="absolute left-3 top-1/2 z-20 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-2xl border border-white/10 bg-[#09090f]/75 text-slate-100 shadow-[0_0_18px_rgba(0,0,0,0.25)] backdrop-blur-md transition-all duration-300 hover:border-fuchsia-300/20 hover:text-fuchsia-200 md:left-5"
+                        className="game-button-secondary absolute left-3 top-1/2 z-20 h-11 w-11 -translate-y-1/2 p-0 md:left-5"
                       >
                         <ChevronLeft className="h-5 w-5" />
                       </button>
@@ -435,7 +509,7 @@ export default function Projects({ language }: ProjectsProps) {
                       <button
                         onClick={goToNextImage}
                         aria-label={t.next}
-                        className="absolute right-3 top-1/2 z-20 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-2xl border border-white/10 bg-[#09090f]/75 text-slate-100 shadow-[0_0_18px_rgba(0,0,0,0.25)] backdrop-blur-md transition-all duration-300 hover:border-fuchsia-300/20 hover:text-fuchsia-200 md:right-5"
+                        className="game-button-secondary absolute right-3 top-1/2 z-20 h-11 w-11 -translate-y-1/2 p-0 md:right-5"
                       >
                         <ChevronRight className="h-5 w-5" />
                       </button>
@@ -444,7 +518,16 @@ export default function Projects({ language }: ProjectsProps) {
                 </div>
 
                 {activeProject.images.length > 1 && (
-                  <div className="rounded-[24px] border border-white/10 bg-white/[0.03] p-3 md:p-4">
+                  <div className="game-card p-3 md:p-4">
+                    <div className="mb-3 flex items-center gap-2">
+                      <ImageIcon className="h-4 w-4 text-fuchsia-200" />
+                      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-fuchsia-200/85">
+                        {language === "es" ? "Miniaturas" : "Thumbnails"}
+                      </p>
+                    </div>
+
+                    <div className="game-divider mb-4" />
+
                     <div className="flex gap-3 overflow-x-auto pb-1">
                       {activeProject.images.map((image, index) => {
                         const isActive = index === activeImageIndex;
@@ -453,7 +536,7 @@ export default function Projects({ language }: ProjectsProps) {
                           <button
                             key={image}
                             onClick={() => setActiveImageIndex(index)}
-                            className={`group relative shrink-0 overflow-hidden rounded-[18px] border transition-all duration-300 ${
+                            className={`group relative shrink-0 overflow-hidden rounded-[1rem] border transition-all duration-300 ${
                               isActive
                                 ? "border-fuchsia-300/40 shadow-[0_0_18px_rgba(244,114,182,0.16)]"
                                 : "border-white/10 opacity-75 hover:opacity-100"
