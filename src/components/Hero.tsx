@@ -9,6 +9,7 @@ import {
   Heart,
   Shield,
   Star,
+  Gamepad2,
 } from "lucide-react";
 import type { Language } from "../App";
 
@@ -63,7 +64,8 @@ const content = {
       },
       {
         title: "Mobile",
-        value: "Aplicaciones móviles con Kotlin, JavaScript and React Native (Multiplataform)",
+        value:
+          "Aplicaciones móviles con Kotlin, JavaScript and React Native (Multiplataform)",
         icon: Smartphone,
       },
     ],
@@ -101,7 +103,8 @@ const content = {
       },
       {
         title: "Mobile",
-        value: "Mobile applications with Kotlin JavaScript y React Native (Multiplataforma)",
+        value:
+          "Mobile applications with Kotlin JavaScript y React Native (Multiplataforma)",
         icon: Smartphone,
       },
     ],
@@ -127,7 +130,7 @@ export default function Hero({ language }: HeroProps) {
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="game-label"
+          className="game-label retro-badge"
         >
           <Sparkles className="h-3.5 w-3.5" />
           {t.badge}
@@ -139,11 +142,11 @@ export default function Hero({ language }: HeroProps) {
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="rpg-window"
+            className="rpg-window console-shell arcade-corners pixel-console"
           >
-            <div className="rpg-window__bar">
-              <div className="rpg-window__title">Player Data</div>
-              <div className="rpg-window__dots">
+            <div className="rpg-window__bar console-topbar">
+              <div className="rpg-window__title console-brand">Player Data</div>
+              <div className="rpg-window__dots console-leds">
                 <span />
                 <span />
                 <span />
@@ -151,7 +154,19 @@ export default function Hero({ language }: HeroProps) {
             </div>
 
             <div className="space-y-4 p-5">
-              <div className="game-screen p-4">
+              <div className="game-screen retro-screen p-4">
+                <div className="mb-4 flex items-center justify-between gap-3">
+                  <div className="pacman-row">
+                    <span className="pacman" />
+                    <span className="pacdot" />
+                    <span className="pacdot" />
+                    <span className="pacdot" />
+                    <span className="power-pellet" />
+                  </div>
+
+                  <div className="arcade-ghost arcade-ghost--blue" />
+                </div>
+
                 <div className="flex items-center gap-3">
                   <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-fuchsia-300/20 bg-gradient-to-br from-fuchsia-400/20 to-violet-400/20 text-fuchsia-200">
                     <Heart className="h-5 w-5" />
@@ -162,7 +177,7 @@ export default function Hero({ language }: HeroProps) {
                       {language === "es" ? "Jugador" : "Player"}
                     </p>
                     <p className="truncate text-sm font-semibold text-white">
-                      Anahí Betzabé
+                      Anahí Lozano
                     </p>
                   </div>
                 </div>
@@ -200,12 +215,32 @@ export default function Hero({ language }: HeroProps) {
 
                 <div className="game-chip">
                   <Star className="h-3.5 w-3.5 text-violet-200" />
-                  {language === "es" ? "Frontend + Backend" : "Frontend + Backend"}
+                  {language === "es"
+                    ? "Frontend + Backend"
+                    : "Frontend + Backend"}
                 </div>
 
                 <div className="game-chip">
                   <Sparkles className="h-3.5 w-3.5 text-pink-200" />
                   {language === "es" ? "Diseño cuidado" : "Polished design"}
+                </div>
+              </div>
+
+              <div className="game-divider" />
+
+              <div className="retro-controls pt-1">
+                <div className="dpad" />
+
+                <div className="console-mini-buttons">
+                  <span />
+                  <span />
+                </div>
+
+                <div className="arcade-pad-buttons">
+                  <span />
+                  <span />
+                  <span />
+                  <span />
                 </div>
               </div>
             </div>
@@ -216,11 +251,11 @@ export default function Hero({ language }: HeroProps) {
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="rpg-window"
+            className="rpg-window console-shell arcade-corners"
           >
-            <div className="rpg-window__bar">
-              <div className="rpg-window__title">Main Quest</div>
-              <div className="rpg-window__dots">
+            <div className="rpg-window__bar console-topbar">
+              <div className="rpg-window__title console-brand">Main Quest</div>
+              <div className="rpg-window__dots console-leds">
                 <span />
                 <span />
                 <span />
@@ -257,7 +292,23 @@ export default function Hero({ language }: HeroProps) {
                 variants={fadeUp}
                 className="mt-6"
               >
-                <div className="game-screen p-5 md:p-6">
+                <div className="game-screen retro-screen p-5 md:p-6">
+                  <div className="mb-4 flex flex-wrap items-center justify-between gap-4">
+                    <div className="pacman-row">
+                      <span className="pacman" />
+                      <span className="pacdot" />
+                      <span className="pacdot" />
+                      <span className="pacdot" />
+                      <span className="power-pellet" />
+                      <span className="arcade-ghost arcade-ghost--violet" />
+                    </div>
+
+                    <div className="retro-badge">
+                      <Gamepad2 className="h-3.5 w-3.5" />
+                      {language === "es" ? "Modo creativo" : "Creative mode"}
+                    </div>
+                  </div>
+
                   <p className="text-left text-sm leading-7 text-slate-300 md:text-base">
                     {t.description}
                   </p>
@@ -275,7 +326,7 @@ export default function Hero({ language }: HeroProps) {
                 variants={fadeUp}
                 className="mt-8 flex flex-wrap gap-3"
               >
-                <a href="#projects" className="arcade-button">
+                <a href="#projects" className="arcade-button retro-boost">
                   {t.primary}
                   <ArrowRight className="h-4 w-4" />
                 </a>
@@ -294,6 +345,18 @@ export default function Hero({ language }: HeroProps) {
                   {t.tertiary}
                 </a>
               </motion.div>
+
+              <div className="mt-6 flex items-center justify-center md:justify-start">
+                <div className="pacman-row">
+                  <span className="pacman" />
+                  <span className="pacdot" />
+                  <span className="pacdot" />
+                  <span className="pacdot" />
+                  <span className="pacdot" />
+                  <span className="power-pellet" />
+                  <span className="arcade-ghost" />
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -313,7 +376,7 @@ export default function Hero({ language }: HeroProps) {
                 key={card.title}
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.2 }}
-                className="game-card p-5 text-left"
+                className="game-card console-screen p-5 text-left"
               >
                 <div className="mb-4 flex items-center justify-between gap-3">
                   <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-fuchsia-300/15 bg-gradient-to-br from-fuchsia-500/20 to-violet-500/20 text-fuchsia-200">
@@ -323,6 +386,15 @@ export default function Hero({ language }: HeroProps) {
                   <span className="game-chip">
                     {language === "es" ? "Skill" : "Skill"}
                   </span>
+                </div>
+
+                <div className="mb-3 flex items-center justify-between gap-3">
+                  <div className="pacman-row">
+                    <span className="pacman" />
+                    <span className="pacdot" />
+                    <span className="pacdot" />
+                  </div>
+                  <div className="arcade-ghost arcade-ghost--blue" />
                 </div>
 
                 <p className="text-[11px] uppercase tracking-[0.2em] text-fuchsia-200/80">

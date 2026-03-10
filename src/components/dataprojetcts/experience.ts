@@ -2,16 +2,16 @@ import { Briefcase, Cpu } from "lucide-react";
 
 export const experience = [
   {
-    titleEs: "Residencia Profesional – Sistema Web Full Stack",
-    titleEn: "Professional Residency – Full Stack Web System",
-    companyEs: "Instituto Tecnológico de Aguascalientes / Proyecto empresarial",
-    companyEn: "Instituto Tecnológico de Aguascalientes / Business prototype project",
-    periodEs: "Septiembre 2025 – Enero 2026",
-    periodEn: "September 2025 – January 2026",
+    titleEs: "Desarrolladora Full Stack – Sistema Web Empresarial",
+    titleEn: "Full Stack Developer – Business Web Platform",
+    companyEs: "Lemaboox / Instituto Tecnológico de Aguascalientes",
+    companyEn: "Lemaboox / Instituto Tecnológico de Aguascalientes",
+    periodEs: "Agosto 2025 – Marzo 2026",
+    periodEn: "August 2025 – March 2026",
     descriptionEs:
-      "Diseñé y desarrollé una aplicación web full stack con Angular, Node.js y MySQL. Implementé APIs REST, autenticación con control de roles, modelado relacional de base de datos y panel administrativo responsivo para gestión estructurada de información.",
+      "Inicié el desarrollo de la plataforma como parte de mi Residencia Profesional (Agosto–Diciembre 2025) y posteriormente continué colaborando como desarrolladora en el proyecto (Diciembre 2025–Marzo 2026). Diseñé y desarrollé una aplicación web full stack utilizando Angular, Node.js y MySQL. Implementé APIs REST, autenticación con control de roles (RBAC), modelado relacional de base de datos y un panel administrativo responsivo para la gestión estructurada de información.",
     descriptionEn:
-      "Designed and developed a full stack web application using Angular, Node.js and MySQL. Implemented REST APIs, role-based authentication, relational database modeling and a responsive admin dashboard for structured information management.",
+      "Started the development of the platform as part of my Professional Residency program (August–December 2025) and later continued collaborating as a developer on the project (December 2025–March 2026). Designed and developed a full stack web application using Angular, Node.js and MySQL. Implemented REST APIs, role-based authentication (RBAC), relational database modeling and a responsive admin dashboard for structured information management.",
     stack: "Angular • Node.js • MySQL • REST APIs • RBAC",
     icon: Briefcase,
   },

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Globe, Sparkles } from "lucide-react";
+import { Globe, Sparkles, Gamepad2 } from "lucide-react";
 import type { Language } from "../App";
 
 interface NavbarProps {
@@ -67,15 +67,13 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
         }}
         className="fixed inset-x-0 top-0 z-50 px-3 pt-2 sm:px-6 lg:px-8"
       >
-        {/* fondo para evitar transparencia */}
         <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-[#09090f]/80 via-[#09090f]/55 to-transparent" />
 
         <div className="mx-auto max-w-7xl">
-          <div className="rpg-window overflow-hidden bg-[#0b0914]/95 backdrop-blur-xl supports-[backdrop-filter]:bg-[#0b0914]/90 border border-fuchsia-300/15 shadow-[0_12px_40px_rgba(0,0,0,0.45)]">
-            
-            <div className="flex items-center justify-between gap-3 px-3 py-2.5 sm:px-4">
+          <div className="rpg-window console-shell arcade-corners pixel-console overflow-hidden border border-fuchsia-300/15 bg-[#0b0914]/95 shadow-[0_12px_40px_rgba(0,0,0,0.45)] backdrop-blur-xl supports-[backdrop-filter]:bg-[#0b0914]/90">
 
-              <a href="#home" className="group flex min-w-0 items-center gap-2.5">
+            <div className="flex items-center justify-between gap-3 px-3 py-2.5 sm:px-4">
+              <a href="#home" className="group flex min-w-0 items-center gap-3">
                 <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border border-fuchsia-300/20 bg-gradient-to-br from-fuchsia-500/15 via-violet-500/15 to-pink-400/10 text-fuchsia-200 shadow-[0_0_16px_rgba(244,114,182,0.12)] transition-transform duration-300 group-hover:scale-105">
                   <Sparkles className="h-4 w-4" />
                 </div>
@@ -91,7 +89,12 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
               </a>
 
               <div className="hidden items-center gap-2 md:flex">
-                <nav className="game-screen flex items-center gap-1 px-1.5 py-1.5 text-sm text-slate-300">
+                <nav className="game-screen console-screen flex items-center gap-1 px-1.5 py-1.5 text-sm text-slate-300">
+                  <div className="mr-1 flex items-center gap-1.5 px-2">
+                    <span className="pacman" />
+                    <span className="pacdot" />
+                    <span className="pacdot" />
+                  </div>
 
                   <a
                     href="#about"
@@ -121,13 +124,18 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
                     {t.contact}
                   </a>
 
+                  <div className="ml-1">
+                    <span className="arcade-ghost arcade-ghost--violet" />
+                  </div>
                 </nav>
 
-                <div className="game-screen flex items-center gap-1 px-1.5 py-1.5">
-                  <Globe className="h-3.5 w-3.5 text-fuchsia-200/80" />
+                <div className="game-screen console-screen flex items-center gap-1 px-1.5 py-1.5">
+                  <div className="flex items-center gap-1 px-1">
+                    <Globe className="h-3.5 w-3.5 text-fuchsia-200/80" />
+                    <Gamepad2 className="h-3.5 w-3.5 text-violet-200/75" />
+                  </div>
 
                   <div className="relative flex items-center rounded-full bg-white/[0.03] p-1">
-
                     {(["es", "en"] as Language[]).map((lang) => {
                       const isActive = language === lang;
 
@@ -137,7 +145,6 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
                           onClick={() => setLanguage(lang)}
                           className="relative min-w-[44px] rounded-full px-3 py-1.5 text-[11px] font-semibold transition-colors duration-300"
                         >
-
                           {isActive && (
                             <motion.span
                               layoutId="language-pill"
@@ -159,22 +166,21 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
                           >
                             {lang.toUpperCase()}
                           </span>
-
                         </button>
                       );
                     })}
-
                   </div>
                 </div>
               </div>
 
               <div className="md:hidden">
-                <div className="game-screen flex items-center gap-1 px-1.5 py-1.5">
-
-                  <Globe className="h-3.5 w-3.5 text-fuchsia-200/80" />
+                <div className="game-screen console-screen flex items-center gap-1 px-1.5 py-1.5">
+                  <div className="flex items-center gap-1 px-1">
+                    <Globe className="h-3.5 w-3.5 text-fuchsia-200/80" />
+                    <span className="arcade-ghost arcade-ghost--blue" />
+                  </div>
 
                   <div className="relative flex items-center rounded-full bg-white/[0.03] p-1">
-
                     {(["es", "en"] as Language[]).map((lang) => {
                       const isActive = language === lang;
 
@@ -184,7 +190,6 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
                           onClick={() => setLanguage(lang)}
                           className="relative min-w-[42px] rounded-full px-2.5 py-1.5 text-[11px] font-semibold transition-colors duration-300"
                         >
-
                           {isActive && (
                             <motion.span
                               layoutId="language-pill-mobile"
@@ -204,18 +209,15 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
                           >
                             {lang.toUpperCase()}
                           </span>
-
                         </button>
                       );
                     })}
-
                   </div>
                 </div>
               </div>
             </div>
 
             <nav className="grid grid-cols-4 gap-1 border-t border-white/8 px-2 py-2 md:hidden">
-
               <a
                 href="#about"
                 className="rounded-xl px-2 py-2 text-center text-[11px] font-medium text-slate-300 transition-all duration-200 hover:bg-white/[0.05] hover:text-fuchsia-200"
@@ -243,14 +245,20 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
               >
                 {t.contact}
               </a>
-
             </nav>
+
+            <div className="flex items-center justify-center gap-2 border-t border-white/8 px-3 py-2 md:hidden">
+              <span className="pacman" />
+              <span className="pacdot" />
+              <span className="pacdot" />
+              <span className="power-pellet" />
+              <span className="arcade-ghost arcade-ghost--violet" />
+            </div>
           </div>
         </div>
       </motion.header>
 
-      {/* espacio para que el contenido no se suba debajo del navbar */}
-      <div className="h-[84px] md:h-[80px]" />
+      <div className="h-[96px] md:h-[84px]" />
     </>
   );
 }

@@ -134,7 +134,7 @@ export default function About({ language }: AboutProps) {
         viewport={{ once: true, amount: 0.2 }}
         variants={fadeUp}
       >
-        <div className="game-label">
+        <div className="game-label retro-badge">
           <Sparkles className="h-4 w-4" />
           {t.badge}
         </div>
@@ -143,6 +143,17 @@ export default function About({ language }: AboutProps) {
           <span className="game-title-gradient">{t.title}</span>
         </h2>
 
+        <div className="mt-6 flex items-center justify-start">
+          <div className="pacman-row">
+            <span className="pacman" />
+            <span className="pacdot" />
+            <span className="pacdot" />
+            <span className="pacdot" />
+            <span className="power-pellet" />
+            <span className="arcade-ghost arcade-ghost--violet" />
+          </div>
+        </div>
+
         <div className="mt-10 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
           <motion.div
             custom={1}
@@ -150,14 +161,14 @@ export default function About({ language }: AboutProps) {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="rpg-window"
+            className="rpg-window console-shell arcade-corners"
           >
-            <div className="rpg-window__bar">
-              <div className="rpg-window__title">
+            <div className="rpg-window__bar console-topbar">
+              <div className="rpg-window__title console-brand">
                 {language === "es" ? "Background" : "Background"}
               </div>
 
-              <div className="rpg-window__dots">
+              <div className="rpg-window__dots console-leds">
                 <span />
                 <span />
                 <span />
@@ -165,17 +176,26 @@ export default function About({ language }: AboutProps) {
             </div>
 
             <div className="space-y-5 p-5 md:p-7">
-              <div className="game-screen p-5">
-                <div className="mb-4 flex flex-wrap gap-2">
-                  <span className="game-chip">
-                    <Shield className="h-3.5 w-3.5 text-fuchsia-200" />
-                    {language === "es" ? "Perfil técnico" : "Technical profile"}
-                  </span>
+              <div className="game-screen retro-screen p-5">
+                <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+                  <div className="flex flex-wrap gap-2">
+                    <span className="game-chip">
+                      <Shield className="h-3.5 w-3.5 text-fuchsia-200" />
+                      {language === "es" ? "Perfil técnico" : "Technical profile"}
+                    </span>
 
-                  <span className="game-chip">
-                    <Star className="h-3.5 w-3.5 text-violet-200" />
-                    {language === "es" ? "Producto + diseño" : "Product + design"}
-                  </span>
+                    <span className="game-chip">
+                      <Star className="h-3.5 w-3.5 text-violet-200" />
+                      {language === "es" ? "Producto + diseño" : "Product + design"}
+                    </span>
+                  </div>
+
+                  <div className="pacman-row">
+                    <span className="pacman" />
+                    <span className="pacdot" />
+                    <span className="pacdot" />
+                    <span className="arcade-ghost arcade-ghost--blue" />
+                  </div>
                 </div>
 
                 <div className="space-y-5 text-left text-[15px] leading-8 text-slate-300 md:text-base">
@@ -193,12 +213,12 @@ export default function About({ language }: AboutProps) {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="rpg-window"
+            className="rpg-window console-shell arcade-corners pixel-console"
           >
-            <div className="rpg-window__bar">
-              <div className="rpg-window__title">{t.cardTitle}</div>
+            <div className="rpg-window__bar console-topbar">
+              <div className="rpg-window__title console-brand">{t.cardTitle}</div>
 
-              <div className="rpg-window__dots">
+              <div className="rpg-window__dots console-leds">
                 <span />
                 <span />
                 <span />
@@ -206,6 +226,15 @@ export default function About({ language }: AboutProps) {
             </div>
 
             <div className="p-5 md:p-6">
+              <div className="mb-4 flex items-center justify-between gap-3">
+                <div className="retro-badge">
+                  <Sparkles className="h-3.5 w-3.5" />
+                  {language === "es" ? "Power ups" : "Power ups"}
+                </div>
+
+                <div className="arcade-ghost arcade-ghost--violet" />
+              </div>
+
               <div className="space-y-3">
                 {t.highlights.map((item) => (
                   <div key={item} className="game-stat">
@@ -232,14 +261,26 @@ export default function About({ language }: AboutProps) {
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={fadeUp}
-                className="game-card p-5 text-left"
+                className="game-card console-screen p-5 text-left"
               >
                 <div className="mb-4 flex items-center justify-between gap-3">
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-fuchsia-300/15 bg-gradient-to-br from-fuchsia-500/20 to-violet-500/20 text-fuchsia-200">
                     <Icon className="h-5 w-5" />
                   </div>
 
-                  
+                  <span className="game-chip">
+                    {language === "es" ? "Skill" : "Skill"}
+                  </span>
+                </div>
+
+                <div className="mb-3 flex items-center justify-between gap-3">
+                  <div className="pacman-row">
+                    <span className="pacman" />
+                    <span className="pacdot" />
+                    <span className="pacdot" />
+                  </div>
+
+                  <div className="arcade-ghost arcade-ghost--blue" />
                 </div>
 
                 <h3 className="text-base font-semibold text-white md:text-lg">
@@ -248,9 +289,7 @@ export default function About({ language }: AboutProps) {
 
                 <div className="game-divider my-4" />
 
-                <p className="text-sm leading-7 text-slate-300">
-                  {card.text}
-                </p>
+                <p className="text-sm leading-7 text-slate-300">{card.text}</p>
               </motion.div>
             );
           })}

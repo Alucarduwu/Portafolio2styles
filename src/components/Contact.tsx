@@ -1,5 +1,14 @@
 import { motion, type Variants } from "framer-motion";
-import { Mail, Github, FileText, Linkedin, Sparkles, Send, Star } from "lucide-react";
+import {
+  Mail,
+  Github,
+  FileText,
+  Linkedin,
+  Sparkles,
+  Send,
+  Star,
+  Gamepad2,
+} from "lucide-react";
 import type { Language } from "../App";
 
 interface ContactProps {
@@ -62,12 +71,12 @@ export default function Contact({ language }: ContactProps) {
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
         variants={fadeUp}
-        className="rpg-window"
+        className="rpg-window console-shell arcade-corners pixel-console"
       >
-        <div className="rpg-window__bar">
-          <div className="rpg-window__title">{t.panelTitle}</div>
+        <div className="rpg-window__bar console-topbar">
+          <div className="rpg-window__title console-brand">{t.panelTitle}</div>
 
-          <div className="rpg-window__dots">
+          <div className="rpg-window__dots console-leds">
             <span />
             <span />
             <span />
@@ -75,7 +84,7 @@ export default function Contact({ language }: ContactProps) {
         </div>
 
         <div className="p-6 md:p-8">
-          <div className="game-label">
+          <div className="game-label retro-badge">
             <Sparkles className="h-4 w-4" />
             {t.badge}
           </div>
@@ -84,6 +93,17 @@ export default function Contact({ language }: ContactProps) {
             <span className="game-title-gradient">{t.title}</span>
           </h2>
 
+          <div className="mt-4 flex items-center justify-start">
+            <div className="pacman-row">
+              <span className="pacman" />
+              <span className="pacdot" />
+              <span className="pacdot" />
+              <span className="pacdot" />
+              <span className="power-pellet" />
+              <span className="arcade-ghost arcade-ghost--violet" />
+            </div>
+          </div>
+
           <div className="mt-6 grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
             <motion.div
               custom={1}
@@ -91,18 +111,36 @@ export default function Contact({ language }: ContactProps) {
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeUp}
-              className="game-screen p-5 md:p-6"
+              className="game-screen retro-screen p-5 md:p-6"
             >
-              <div className="mb-4 flex flex-wrap gap-2">
-                <span className="game-chip">
-                  <Star className="h-3.5 w-3.5 text-fuchsia-200" />
-                  {t.availability}
-                </span>
+              <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+                <div className="flex flex-wrap gap-2">
+                  <span className="game-chip">
+                    <Star className="h-3.5 w-3.5 text-fuchsia-200" />
+                    {t.availability}
+                  </span>
 
-                <span className="game-chip">
-                  <Send className="h-3.5 w-3.5 text-violet-200" />
-                  {t.quickNote}
-                </span>
+                  <span className="game-chip">
+                    <Send className="h-3.5 w-3.5 text-violet-200" />
+                    {t.quickNote}
+                  </span>
+                </div>
+
+                <div className="retro-badge">
+                  <Gamepad2 className="h-3.5 w-3.5" />
+                  {language === "es" ? "Modo conexión" : "Connect mode"}
+                </div>
+              </div>
+
+              <div className="mb-4 flex items-center justify-between gap-3">
+                <div className="pacman-row">
+                  <span className="pacman" />
+                  <span className="pacdot" />
+                  <span className="pacdot" />
+                  <span className="power-pellet" />
+                </div>
+
+                <div className="arcade-ghost arcade-ghost--blue" />
               </div>
 
               <p className="max-w-2xl text-left leading-8 text-slate-300">
@@ -116,11 +154,15 @@ export default function Contact({ language }: ContactProps) {
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeUp}
-              className="game-card p-5 md:p-6"
+              className="game-card console-screen p-5 md:p-6"
             >
-              <p className="text-left text-xs font-semibold uppercase tracking-[0.24em] text-fuchsia-200/85">
-                {t.linksTitle}
-              </p>
+              <div className="mb-4 flex items-center justify-between gap-3">
+                <p className="text-left text-xs font-semibold uppercase tracking-[0.24em] text-fuchsia-200/85">
+                  {t.linksTitle}
+                </p>
+
+                <div className="arcade-ghost arcade-ghost--violet" />
+              </div>
 
               <div className="game-divider my-4" />
 
@@ -168,7 +210,7 @@ export default function Contact({ language }: ContactProps) {
               href="/Cv Anahi Betzabe Lozano de Lira.pdf"
               target="_blank"
               rel="noreferrer"
-              className="game-card p-5 transition-transform duration-200 hover:-translate-y-1"
+              className="game-card console-screen p-5 transition-transform duration-200 hover:-translate-y-1"
             >
               <div className="mb-4 flex items-center justify-between gap-3">
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-fuchsia-300/15 bg-gradient-to-br from-fuchsia-500/20 to-violet-500/20 text-fuchsia-200">
@@ -176,6 +218,16 @@ export default function Contact({ language }: ContactProps) {
                 </div>
 
                 <span className="game-chip">PDF</span>
+              </div>
+
+              <div className="mb-3 flex items-center justify-between gap-3">
+                <div className="pacman-row">
+                  <span className="pacman" />
+                  <span className="pacdot" />
+                  <span className="pacdot" />
+                </div>
+
+                <div className="arcade-ghost arcade-ghost--blue" />
               </div>
 
               <p className="text-left text-[11px] uppercase tracking-[0.18em] text-fuchsia-200/80">
@@ -197,7 +249,7 @@ export default function Contact({ language }: ContactProps) {
               href="/Anahi_Lozano_Harvard_CV.pdf"
               target="_blank"
               rel="noreferrer"
-              className="game-card p-5 transition-transform duration-200 hover:-translate-y-1"
+              className="game-card console-screen p-5 transition-transform duration-200 hover:-translate-y-1"
             >
               <div className="mb-4 flex items-center justify-between gap-3">
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-fuchsia-300/15 bg-gradient-to-br from-fuchsia-500/20 to-violet-500/20 text-fuchsia-200">
@@ -205,6 +257,16 @@ export default function Contact({ language }: ContactProps) {
                 </div>
 
                 <span className="game-chip">PDF</span>
+              </div>
+
+              <div className="mb-3 flex items-center justify-between gap-3">
+                <div className="pacman-row">
+                  <span className="pacman" />
+                  <span className="pacdot" />
+                  <span className="pacdot" />
+                </div>
+
+                <div className="arcade-ghost arcade-ghost--violet" />
               </div>
 
               <p className="text-left text-[11px] uppercase tracking-[0.18em] text-fuchsia-200/80">
@@ -231,7 +293,7 @@ export default function Contact({ language }: ContactProps) {
             variants={fadeUp}
             className="mt-6 flex flex-wrap gap-3"
           >
-            <a href="mailto:anahydlira@gmail.com" className="arcade-button">
+            <a href="mailto:anahydlira@gmail.com" className="arcade-button retro-boost">
               <Mail className="h-4 w-4" />
               {t.email}
             </a>
