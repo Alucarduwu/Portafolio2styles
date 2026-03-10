@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Globe, Sparkles, Gamepad2 } from "lucide-react";
+import { Languages, Sparkles } from "lucide-react";
 import type { Language } from "../App";
 
 interface NavbarProps {
@@ -71,7 +71,6 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
 
         <div className="mx-auto max-w-7xl">
           <div className="rpg-window console-shell arcade-corners pixel-console overflow-hidden border border-fuchsia-300/15 bg-[#0b0914]/95 shadow-[0_12px_40px_rgba(0,0,0,0.45)] backdrop-blur-xl supports-[backdrop-filter]:bg-[#0b0914]/90">
-
             <div className="flex items-center justify-between gap-3 px-3 py-2.5 sm:px-4">
               <a href="#home" className="group flex min-w-0 items-center gap-3">
                 <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border border-fuchsia-300/20 bg-gradient-to-br from-fuchsia-500/15 via-violet-500/15 to-pink-400/10 text-fuchsia-200 shadow-[0_0_16px_rgba(244,114,182,0.12)] transition-transform duration-300 group-hover:scale-105">
@@ -131,8 +130,7 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
 
                 <div className="game-screen console-screen flex items-center gap-1 px-1.5 py-1.5">
                   <div className="flex items-center gap-1 px-1">
-                    <Globe className="h-3.5 w-3.5 text-fuchsia-200/80" />
-                    <Gamepad2 className="h-3.5 w-3.5 text-violet-200/75" />
+                    <Languages className="h-3.5 w-3.5 text-fuchsia-200/80" />
                   </div>
 
                   <div className="relative flex items-center rounded-full bg-white/[0.03] p-1">
@@ -176,8 +174,7 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
               <div className="md:hidden">
                 <div className="game-screen console-screen flex items-center gap-1 px-1.5 py-1.5">
                   <div className="flex items-center gap-1 px-1">
-                    <Globe className="h-3.5 w-3.5 text-fuchsia-200/80" />
-                    <span className="arcade-ghost arcade-ghost--blue" />
+                    <Languages className="h-3.5 w-3.5 text-fuchsia-200/80" />
                   </div>
 
                   <div className="relative flex items-center rounded-full bg-white/[0.03] p-1">
