@@ -819,3 +819,501 @@ canvas {
     padding: 0.72rem;
   }
 }
+/* =========================
+   KAWAII RETRO / ARCADE DECOR
+========================= */
+
+:root {
+  --pixel-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+    0 0 0 2px rgba(249, 168, 212, 0.08),
+    0 12px 28px rgba(0, 0, 0, 0.24);
+
+  --screen-green: rgba(161, 255, 206, 0.08);
+  --screen-pink: rgba(249, 168, 212, 0.08);
+  --screen-violet: rgba(196, 181, 253, 0.08);
+  --pacman-yellow: #ffe27a;
+  --ghost-pink: #ff9fd6;
+  --ghost-blue: #8be9fd;
+  --ghost-violet: #c4b5fd;
+}
+
+/* efecto general más retro */
+body {
+  image-rendering: auto;
+}
+
+body .arcade-bg-decor,
+body .retro-floating-ui {
+  pointer-events: none;
+}
+
+/* mini scanlines más visibles */
+.crt-screen,
+.console-screen,
+.retro-screen {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.2rem;
+  border: 1px solid rgba(249, 168, 212, 0.2);
+  background:
+    radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.06), transparent 35%),
+    linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)),
+    linear-gradient(135deg, var(--screen-pink), var(--screen-violet));
+  box-shadow:
+    var(--pixel-shadow),
+    0 0 25px rgba(232, 121, 249, 0.1);
+}
+
+.crt-screen::before,
+.console-screen::before,
+.retro-screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px
+    );
+  background-size: 100% 4px;
+  opacity: 0.45;
+  mix-blend-mode: screen;
+}
+
+.crt-screen::after,
+.console-screen::after,
+.retro-screen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,0.12), transparent 30%),
+    radial-gradient(circle at 50% 100%, rgba(0,0,0,0.12), transparent 28%);
+  opacity: 0.7;
+}
+
+/* pantallita retro con marco */
+.console-shell {
+  position: relative;
+  border-radius: 1.7rem;
+  padding: 1rem;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.035));
+  border: 1px solid rgba(249, 168, 212, 0.18);
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.32),
+    0 0 0 1px rgba(255,255,255,0.03) inset;
+}
+
+.console-shell::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border-radius: calc(1.7rem - 8px);
+  border: 1px solid rgba(255,255,255,0.04);
+  pointer-events: none;
+}
+
+.console-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.9rem;
+}
+
+.console-brand {
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--pink);
+  text-shadow: 0 0 12px rgba(249, 168, 212, 0.2);
+}
+
+.console-leds {
+  display: inline-flex;
+  gap: 0.4rem;
+}
+
+.console-leds span {
+  width: 0.52rem;
+  height: 0.52rem;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.35));
+  opacity: 0.95;
+}
+
+.console-leds span:nth-child(1) {
+  background: linear-gradient(180deg, #ff8ec8, #ec4899);
+}
+.console-leds span:nth-child(2) {
+  background: linear-gradient(180deg, #d4b5ff, #8b5cf6);
+}
+.console-leds span:nth-child(3) {
+  background: linear-gradient(180deg, #ffe59a, #f59e0b);
+}
+
+/* botones estilo gameboy / arcade */
+.retro-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.dpad {
+  position: relative;
+  width: 78px;
+  height: 78px;
+}
+
+.dpad::before,
+.dpad::after {
+  content: "";
+  position: absolute;
+  background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+  border: 1px solid rgba(249, 168, 212, 0.18);
+  box-shadow: var(--pixel-shadow);
+  border-radius: 0.65rem;
+}
+
+.dpad::before {
+  width: 28px;
+  height: 78px;
+  left: 25px;
+  top: 0;
+}
+
+.dpad::after {
+  width: 78px;
+  height: 28px;
+  left: 0;
+  top: 25px;
+}
+
+.arcade-pad-buttons {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.arcade-pad-buttons span {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #f9a8d4, #ec4899);
+  box-shadow:
+    0 6px 14px rgba(236, 72, 153, 0.28),
+    0 0 0 2px rgba(255,255,255,0.04) inset;
+}
+
+.arcade-pad-buttons span:nth-child(2) {
+  background: linear-gradient(180deg, #d8b4fe, #8b5cf6);
+}
+
+.arcade-pad-buttons span:nth-child(3) {
+  background: linear-gradient(180deg, #fbcfe8, #f472b6);
+}
+
+.arcade-pad-buttons span:nth-child(4) {
+  background: linear-gradient(180deg, #c4b5fd, #7c3aed);
+}
+
+/* mini botones inferiores */
+.console-mini-buttons {
+  display: flex;
+  gap: 0.55rem;
+  align-items: center;
+}
+
+.console-mini-buttons span {
+  width: 34px;
+  height: 12px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+  border: 1px solid rgba(249, 168, 212, 0.16);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  transform: rotate(-18deg);
+}
+
+/* pacman decor */
+.pacman-row,
+.pixel-pacman-row {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.pacman,
+.pixel-pacman {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 35deg,
+    transparent 0 50deg,
+    var(--pacman-yellow) 50deg 360deg
+  );
+  box-shadow: 0 0 14px rgba(255, 226, 122, 0.24);
+  animation: pacman-chomp 0.55s infinite ease-in-out;
+}
+
+.pacdot,
+.pixel-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0 0 8px rgba(255,255,255,0.18);
+}
+
+.power-pellet {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: #fff1b8;
+  box-shadow: 0 0 12px rgba(255, 234, 167, 0.35);
+  animation: pellet-blink 1s infinite ease-in-out;
+}
+
+/* fantasmitas kawaii */
+.arcade-ghost {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border-radius: 10px 10px 4px 4px;
+  background: var(--ghost-pink);
+  box-shadow: 0 0 12px rgba(255, 159, 214, 0.22);
+}
+
+.arcade-ghost::before,
+.arcade-ghost::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  width: 3px;
+  height: 5px;
+  border-radius: 999px;
+  background: #fff;
+}
+
+.arcade-ghost::before {
+  left: 5px;
+}
+
+.arcade-ghost::after {
+  right: 5px;
+}
+
+.arcade-ghost--blue {
+  background: var(--ghost-blue);
+  box-shadow: 0 0 12px rgba(139, 233, 253, 0.22);
+}
+
+.arcade-ghost--violet {
+  background: var(--ghost-violet);
+  box-shadow: 0 0 12px rgba(196, 181, 253, 0.22);
+}
+
+/* pequeños adornos de esquinas */
+.arcade-corners {
+  position: relative;
+}
+
+.arcade-corners::before,
+.arcade-corners::after {
+  content: "";
+  position: absolute;
+  width: 46px;
+  height: 46px;
+  border: 2px solid rgba(249, 168, 212, 0.16);
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.arcade-corners::before {
+  top: 10px;
+  left: 10px;
+  border-right: none;
+  border-bottom: none;
+  border-top-left-radius: 0.9rem;
+}
+
+.arcade-corners::after {
+  right: 10px;
+  bottom: 10px;
+  border-left: none;
+  border-top: none;
+  border-bottom-right-radius: 0.9rem;
+}
+
+/* borde pixelado suave */
+.pixel-console {
+  position: relative;
+  clip-path: polygon(
+    0 10px, 10px 10px, 10px 0,
+    calc(100% - 10px) 0, calc(100% - 10px) 10px, 100% 10px,
+    100% calc(100% - 10px), calc(100% - 10px) calc(100% - 10px),
+    calc(100% - 10px) 100%, 10px 100%, 10px calc(100% - 10px), 0 calc(100% - 10px)
+  );
+}
+
+/* slot tipo cartucho */
+.cartridge-slot {
+  width: 86px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.28);
+}
+
+/* badges retro */
+.retro-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 0.85rem;
+  border-radius: 0.9rem;
+  border: 1px solid rgba(249, 168, 212, 0.18);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+  box-shadow: var(--pixel-shadow);
+  color: var(--pink);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+/* boton más videojuego */
+.arcade-button.retro-boost {
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow:
+    0 14px 28px rgba(168, 85, 247, 0.28),
+    0 0 0 1px rgba(255,255,255,0.06) inset,
+    0 0 18px rgba(249, 168, 212, 0.14);
+}
+
+.arcade-button.retro-boost::after {
+  content: "";
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  top: 5px;
+  height: 34%;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.24), transparent);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* animaciones */
+@keyframes pacman-chomp {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    background: conic-gradient(
+      from 35deg,
+      transparent 0 50deg,
+      var(--pacman-yellow) 50deg 360deg
+    );
+  }
+  50% {
+    transform: scale(1.04) rotate(-4deg);
+    background: conic-gradient(
+      from 18deg,
+      transparent 0 78deg,
+      var(--pacman-yellow) 78deg 360deg
+    );
+  }
+}
+
+@keyframes pellet-blink {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.8);
+  }
+}
+
+@keyframes ghost-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes screen-flicker {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.96;
+  }
+}
+
+.retro-screen,
+.console-screen {
+  animation: screen-flicker 3.2s infinite ease-in-out;
+}
+
+.arcade-ghost {
+  animation: ghost-float 1.8s infinite ease-in-out;
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .console-shell {
+    border-radius: 1.2rem;
+    padding: 0.8rem;
+  }
+
+  .console-shell::before {
+    inset: 6px;
+    border-radius: calc(1.2rem - 6px);
+  }
+
+  .dpad {
+    width: 64px;
+    height: 64px;
+  }
+
+  .dpad::before {
+    width: 24px;
+    height: 64px;
+    left: 20px;
+  }
+
+  .dpad::after {
+    width: 64px;
+    height: 24px;
+    top: 20px;
+  }
+
+  .arcade-pad-buttons span {
+    width: 18px;
+    height: 18px;
+  }
+
+  .console-brand {
+    font-size: 0.6rem;
+  }
+
+  .pacman,
+  .pixel-pacman,
+  .arcade-ghost {
+    width: 15px;
+    height: 15px;
+  }
+}

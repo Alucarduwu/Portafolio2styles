@@ -9,6 +9,8 @@ import {
   X,
   FolderOpen,
   Image as ImageIcon,
+  Gamepad2,
+  Star,
 } from "lucide-react";
 import { projects } from "../components/dataprojetcts/projects";
 import type { Language } from "../App";
@@ -216,15 +218,28 @@ export default function Projects({ language }: ProjectsProps) {
         viewport={{ once: true, amount: 0.2 }}
         variants={fadeUp}
       >
-        <div className="game-label">
+        <div className="game-label retro-badge">
           <Sparkles className="h-4 w-4" />
           {t.badge}
         </div>
 
         <div className="mt-5 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-          <h2 className="pixel-title glow-text text-3xl text-white md:text-5xl">
-            <span className="game-title-gradient">{t.title}</span>
-          </h2>
+          <div>
+            <h2 className="pixel-title glow-text text-3xl text-white md:text-5xl">
+              <span className="game-title-gradient">{t.title}</span>
+            </h2>
+
+            <div className="mt-4 flex items-center justify-start">
+              <div className="pacman-row">
+                <span className="pacman" />
+                <span className="pacdot" />
+                <span className="pacdot" />
+                <span className="pacdot" />
+                <span className="power-pellet" />
+                <span className="arcade-ghost arcade-ghost--violet" />
+              </div>
+            </div>
+          </div>
 
           <div className="flex items-center gap-3">
             <button
@@ -276,14 +291,14 @@ export default function Projects({ language }: ProjectsProps) {
                   <motion.article
                     key={`${project.titleEn}-${current}`}
                     layout
-                    className="rpg-window overflow-hidden"
+                    className="rpg-window console-shell arcade-corners pixel-console overflow-hidden"
                   >
-                    <div className="rpg-window__bar">
-                      <div className="rpg-window__title">
+                    <div className="rpg-window__bar console-topbar">
+                      <div className="rpg-window__title console-brand">
                         {t.panelTitle} #{String(realProjectIndex + 1).padStart(2, "0")}
                       </div>
 
-                      <div className="rpg-window__dots">
+                      <div className="rpg-window__dots console-leds">
                         <span />
                         <span />
                         <span />
@@ -296,7 +311,7 @@ export default function Projects({ language }: ProjectsProps) {
                           <button
                             type="button"
                             onClick={() => openGallery(realProjectIndex)}
-                            className="game-screen group relative block h-64 w-full overflow-hidden rounded-[1.25rem] text-left"
+                            className="game-screen retro-screen group relative block h-64 w-full overflow-hidden rounded-[1.25rem] text-left"
                           >
                             <img
                               src={previewImage}
@@ -305,6 +320,15 @@ export default function Projects({ language }: ProjectsProps) {
                             />
 
                             <div className="absolute inset-0 bg-gradient-to-t from-[#09090f]/90 via-[#09090f]/40 to-transparent" />
+
+                            <div className="absolute left-4 top-4 z-10">
+                              <div className="pacman-row">
+                                <span className="pacman" />
+                                <span className="pacdot" />
+                                <span className="pacdot" />
+                                <span className="arcade-ghost arcade-ghost--blue" />
+                              </div>
+                            </div>
 
                             <div className="absolute inset-x-0 bottom-0 p-5">
                               <div className="flex flex-wrap items-end justify-between gap-3">
@@ -327,14 +351,21 @@ export default function Projects({ language }: ProjectsProps) {
                             </div>
                           </button>
 
-                          <div className="game-screen p-5">
-                            <div className="mb-3 flex flex-wrap gap-2">
-                              <span className="game-chip">
-                                <FolderOpen className="h-3.5 w-3.5 text-fuchsia-200" />
-                                {t.projectLabel}
-                              </span>
+                          <div className="game-screen console-screen p-5">
+                            <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
+                              <div className="flex flex-wrap gap-2">
+                                <span className="game-chip">
+                                  <FolderOpen className="h-3.5 w-3.5 text-fuchsia-200" />
+                                  {t.projectLabel}
+                                </span>
 
-                              <span className="game-chip">{project.stack}</span>
+                                <span className="game-chip">{project.stack}</span>
+                              </div>
+
+                              <div className="retro-badge">
+                                <Gamepad2 className="h-3.5 w-3.5" />
+                                {language === "es" ? "Select" : "Select"}
+                              </div>
                             </div>
 
                             <p className="text-left text-sm leading-7 text-slate-300">
@@ -344,10 +375,14 @@ export default function Projects({ language }: ProjectsProps) {
                         </div>
 
                         <div className="space-y-4">
-                          <div className="game-card p-4">
-                            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-fuchsia-200/85">
-                              {t.resources}
-                            </p>
+                          <div className="game-card console-screen p-4">
+                            <div className="mb-3 flex items-center justify-between gap-2">
+                              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-fuchsia-200/85">
+                                {t.resources}
+                              </p>
+
+                              <div className="arcade-ghost arcade-ghost--violet" />
+                            </div>
 
                             <div className="game-divider my-4" />
 
@@ -378,7 +413,7 @@ export default function Projects({ language }: ProjectsProps) {
                                   href={project.demo}
                                   target="_blank"
                                   rel="noreferrer"
-                                  className="arcade-button w-full justify-start"
+                                  className="arcade-button retro-boost w-full justify-start"
                                 >
                                   <ExternalLink className="h-4 w-4" />
                                   {t.demo}
@@ -387,10 +422,17 @@ export default function Projects({ language }: ProjectsProps) {
                             </div>
                           </div>
 
-                          <div className="game-card p-4">
-                            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-fuchsia-200/85">
-                              {language === "es" ? "Estado" : "Status"}
-                            </p>
+                          <div className="game-card console-screen p-4">
+                            <div className="mb-3 flex items-center justify-between gap-2">
+                              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-fuchsia-200/85">
+                                {language === "es" ? "Estado" : "Status"}
+                              </p>
+
+                              <div className="pacman-row">
+                                <span className="pacman" />
+                                <span className="pacdot" />
+                              </div>
+                            </div>
 
                             <div className="game-divider my-4" />
 
@@ -400,6 +442,10 @@ export default function Projects({ language }: ProjectsProps) {
                               </span>
                               <span className="game-chip">
                                 {language === "es" ? "Portfolio" : "Portfolio"}
+                              </span>
+                              <span className="game-chip">
+                                <Star className="h-3.5 w-3.5 text-fuchsia-200" />
+                                {language === "es" ? "Destacado" : "Featured"}
                               </span>
                             </div>
                           </div>
@@ -450,9 +496,9 @@ export default function Projects({ language }: ProjectsProps) {
               animate="visible"
               exit="exit"
               onClick={(e) => e.stopPropagation()}
-              className="rpg-window relative flex h-[92vh] w-full max-w-6xl flex-col overflow-hidden"
+              className="rpg-window console-shell arcade-corners relative flex h-[92vh] w-full max-w-6xl flex-col overflow-hidden"
             >
-              <div className="rpg-window__bar">
+              <div className="rpg-window__bar console-topbar">
                 <div className="min-w-0">
                   <p className="text-[11px] uppercase tracking-[0.24em] text-fuchsia-200/75 md:text-xs">
                     {t.screenshots}
@@ -463,7 +509,14 @@ export default function Projects({ language }: ProjectsProps) {
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <div className="rpg-window__dots">
+                  <div className="pacman-row hidden sm:flex">
+                    <span className="pacman" />
+                    <span className="pacdot" />
+                    <span className="pacdot" />
+                    <span className="power-pellet" />
+                  </div>
+
+                  <div className="rpg-window__dots console-leds">
                     <span />
                     <span />
                     <span />
@@ -480,8 +533,17 @@ export default function Projects({ language }: ProjectsProps) {
               </div>
 
               <div className="flex min-h-0 flex-1 flex-col gap-4 p-4 md:gap-5 md:p-6">
-                <div className="game-screen relative flex min-h-0 flex-1 items-center justify-center overflow-hidden rounded-[1.5rem] px-3 py-4 md:px-6 md:py-6">
+                <div className="game-screen retro-screen relative flex min-h-0 flex-1 items-center justify-center overflow-hidden rounded-[1.5rem] px-3 py-4 md:px-6 md:py-6">
                   <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.04),transparent_55%)]" />
+
+                  <div className="pointer-events-none absolute left-4 top-4 z-10">
+                    <div className="pacman-row">
+                      <span className="pacman" />
+                      <span className="pacdot" />
+                      <span className="pacdot" />
+                      <span className="arcade-ghost arcade-ghost--blue" />
+                    </div>
+                  </div>
 
                   <AnimatePresence mode="wait">
                     <motion.img
@@ -518,12 +580,16 @@ export default function Projects({ language }: ProjectsProps) {
                 </div>
 
                 {activeProject.images.length > 1 && (
-                  <div className="game-card p-3 md:p-4">
-                    <div className="mb-3 flex items-center gap-2">
-                      <ImageIcon className="h-4 w-4 text-fuchsia-200" />
-                      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-fuchsia-200/85">
-                        {language === "es" ? "Miniaturas" : "Thumbnails"}
-                      </p>
+                  <div className="game-card console-screen p-3 md:p-4">
+                    <div className="mb-3 flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2">
+                        <ImageIcon className="h-4 w-4 text-fuchsia-200" />
+                        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-fuchsia-200/85">
+                          {language === "es" ? "Miniaturas" : "Thumbnails"}
+                        </p>
+                      </div>
+
+                      <div className="arcade-ghost arcade-ghost--violet" />
                     </div>
 
                     <div className="game-divider mb-4" />
