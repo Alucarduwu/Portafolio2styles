@@ -88,45 +88,45 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
               </a>
 
               <div className="hidden items-center gap-2 md:flex">
-                <nav className="game-screen console-screen flex items-center gap-1 px-1.5 py-1.5 text-sm text-slate-300">
-                  <div className="mr-1 flex items-center gap-1.5 px-2">
-                    <span className="pacman" />
-                    <span className="pacdot" />
-                    <span className="pacdot" />
-                  </div>
+                <nav className="game-screen console-screen flex items-center gap-2 px-2 py-2 text-sm text-slate-300">
+  <div className="mr-2 flex items-center gap-1.5 px-2">
+    <span className="pacman" />
+    <span className="pacdot" />
+    <span className="pacdot" />
+  </div>
 
-                  <a
-                    href="#about"
-                    className="rounded-full px-3 py-1.5 text-xs font-medium text-slate-300 transition-all duration-200 hover:bg-white/[0.05] hover:text-fuchsia-200"
-                  >
-                    {t.about}
-                  </a>
+  <a
+    href="#about"
+    className="rounded-full px-3.5 py-1.5 text-xs font-medium text-slate-300 transition-all duration-200 hover:bg-white/[0.05] hover:text-fuchsia-200"
+  >
+    {t.about}
+  </a>
 
-                  <a
-                    href="#projects"
-                    className="rounded-full px-3 py-1.5 text-xs font-medium text-slate-300 transition-all duration-200 hover:bg-white/[0.05] hover:text-fuchsia-200"
-                  >
-                    {t.projects}
-                  </a>
+  <a
+    href="#projects"
+    className="rounded-full px-3.5 py-1.5 text-xs font-medium text-slate-300 transition-all duration-200 hover:bg-white/[0.05] hover:text-fuchsia-200"
+  >
+    {t.projects}
+  </a>
 
-                  <a
-                    href="#skills"
-                    className="rounded-full px-3 py-1.5 text-xs font-medium text-slate-300 transition-all duration-200 hover:bg-white/[0.05] hover:text-fuchsia-200"
-                  >
-                    {t.skills}
-                  </a>
+  <a
+    href="#skills"
+    className="rounded-full px-3.5 py-1.5 text-xs font-medium text-slate-300 transition-all duration-200 hover:bg-white/[0.05] hover:text-fuchsia-200"
+  >
+    {t.skills}
+  </a>
 
-                  <a
-                    href="#contact"
-                    className="rounded-full bg-gradient-to-r from-fuchsia-500/90 via-violet-500/90 to-pink-400/90 px-3 py-1.5 text-xs font-semibold text-white shadow-[0_0_16px_rgba(244,114,182,0.14)] transition-all duration-200 hover:scale-[1.02]"
-                  >
-                    {t.contact}
-                  </a>
+  <a
+    href="#contact"
+    className="rounded-full bg-gradient-to-r from-fuchsia-500/90 via-violet-500/90 to-pink-400/90 px-3.5 py-1.5 text-xs font-semibold text-white shadow-[0_0_16px_rgba(244,114,182,0.14)] transition-all duration-200 hover:scale-[1.02]"
+  >
+    {t.contact}
+  </a>
 
-                  <div className="ml-1">
-                    <span className="arcade-ghost arcade-ghost--violet" />
-                  </div>
-                </nav>
+  <div className="ml-2">
+    <span className="arcade-ghost arcade-ghost--violet" />
+  </div>
+</nav>
 
                 <div className="game-screen console-screen flex items-center gap-1 px-1.5 py-1.5">
                   <div className="flex items-center gap-1 px-1">
