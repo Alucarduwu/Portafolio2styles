@@ -117,7 +117,7 @@ export default function Hero({ language }: HeroProps) {
   return (
     <section
       id="home"
-      className="relative flex min-h-[100vh] items-center overflow-hidden py-16 md:py-24"
+      className="relative flex min-h-[100vh] items-center overflow-hidden px-0 pb-16 pt-28 md:py-24"
     >
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute left-[-120px] top-10 h-72 w-72 rounded-full bg-fuchsia-400/15 blur-3xl" />
