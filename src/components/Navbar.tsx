@@ -87,49 +87,51 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
                 </div>
               </a>
 
-              <div className="hidden items-center gap-2 md:flex">
-                <nav className="game-screen console-screen flex items-center gap-2 px-2 py-2 text-sm text-slate-300">
-  <div className="mr-2 flex items-center gap-1.5 px-2">
-    <span className="pacman" />
-    <span className="pacdot" />
-    <span className="pacdot" />
-  </div>
+              <div className="hidden items-center gap-3 md:flex">
+                <nav className="game-screen console-screen flex items-center rounded-[1.4rem] px-3 py-2 text-sm text-slate-300">
+                  <div className="mr-3 flex items-center gap-1.5 border-r border-white/8 pr-3">
+                    <span className="pacman" />
+                    <span className="pacdot" />
+                    <span className="pacdot" />
+                  </div>
 
-  <a
-    href="#about"
-    className="rounded-full px-3.5 py-1.5 text-xs font-medium text-slate-300 transition-all duration-200 hover:bg-white/[0.05] hover:text-fuchsia-200"
-  >
-    {t.about}
-  </a>
+                  <div className="flex items-center gap-1.5">
+                    <a
+                      href="#about"
+                      className="rounded-full px-4 py-2 text-xs font-medium text-slate-300 transition-all duration-200 hover:bg-white/[0.05] hover:text-fuchsia-200"
+                    >
+                      {t.about}
+                    </a>
 
-  <a
-    href="#projects"
-    className="rounded-full px-3.5 py-1.5 text-xs font-medium text-slate-300 transition-all duration-200 hover:bg-white/[0.05] hover:text-fuchsia-200"
-  >
-    {t.projects}
-  </a>
+                    <a
+                      href="#projects"
+                      className="rounded-full px-4 py-2 text-xs font-medium text-slate-300 transition-all duration-200 hover:bg-white/[0.05] hover:text-fuchsia-200"
+                    >
+                      {t.projects}
+                    </a>
 
-  <a
-    href="#skills"
-    className="rounded-full px-3.5 py-1.5 text-xs font-medium text-slate-300 transition-all duration-200 hover:bg-white/[0.05] hover:text-fuchsia-200"
-  >
-    {t.skills}
-  </a>
+                    <a
+                      href="#skills"
+                      className="rounded-full px-4 py-2 text-xs font-medium text-slate-300 transition-all duration-200 hover:bg-white/[0.05] hover:text-fuchsia-200"
+                    >
+                      {t.skills}
+                    </a>
 
-  <a
-    href="#contact"
-    className="rounded-full bg-gradient-to-r from-fuchsia-500/90 via-violet-500/90 to-pink-400/90 px-3.5 py-1.5 text-xs font-semibold text-white shadow-[0_0_16px_rgba(244,114,182,0.14)] transition-all duration-200 hover:scale-[1.02]"
-  >
-    {t.contact}
-  </a>
+                    <a
+                      href="#contact"
+                      className="rounded-full bg-gradient-to-r from-fuchsia-500/90 via-violet-500/90 to-pink-400/90 px-4 py-2 text-xs font-semibold text-white shadow-[0_0_16px_rgba(244,114,182,0.14)] transition-all duration-200 hover:scale-[1.02]"
+                    >
+                      {t.contact}
+                    </a>
+                  </div>
 
-  <div className="ml-2">
-    <span className="arcade-ghost arcade-ghost--violet" />
-  </div>
-</nav>
+                  <div className="ml-3 border-l border-white/8 pl-3">
+                    <span className="arcade-ghost arcade-ghost--violet" />
+                  </div>
+                </nav>
 
-                <div className="game-screen console-screen flex items-center gap-1 px-1.5 py-1.5">
-                  <div className="flex items-center gap-1 px-1">
+                <div className="game-screen console-screen flex items-center gap-2 rounded-[1.3rem] px-2.5 py-2">
+                  <div className="flex items-center gap-1 px-1.5">
                     <Languages className="h-3.5 w-3.5 text-fuchsia-200/80" />
                   </div>
 
@@ -141,7 +143,7 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
                         <button
                           key={lang}
                           onClick={() => setLanguage(lang)}
-                          className="relative min-w-[44px] rounded-full px-3 py-1.5 text-[11px] font-semibold transition-colors duration-300"
+                          className="relative min-w-[46px] rounded-full px-3 py-1.5 text-[11px] font-semibold transition-colors duration-300"
                         >
                           {isActive && (
                             <motion.span
