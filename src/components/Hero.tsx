@@ -9,7 +9,6 @@ import {
   Heart,
   Shield,
   Star,
-  Gamepad2,
 } from "lucide-react";
 import type { Language } from "../App";
 
@@ -32,11 +31,14 @@ const fadeUp: Variants = {
 
 const content = {
   es: {
-    badge: "Player Profile • Full Stack Developer",
-    intro: "Hola, soy Anahí Betzabé Lozano de Lira",
-    title1: "Diseño y desarrollo",
-    title2: "productos digitales",
-    title3: "modernos, funcionales y visualmente sólidos.",
+    badge: "",
+    eyebrow: "Hola, soy Anahí Betzabé Lozano de Lira",
+    titleLines: [
+      "Engineer Software",
+      "Fullstack",
+      "web & móvil",
+      "",
+    ],
     description:
       "Soy desarrolladora Full Stack enfocada en crear experiencias web y móviles con una base técnica fuerte y una estética cuidada. Trabajo con Angular, Node.js, React, MySQL, APIs REST y Kotlin para construir soluciones que combinen interfaz, lógica, estructura y escalabilidad.",
     subdescription:
@@ -46,11 +48,14 @@ const content = {
     tertiary: "GitHub",
     stats: {
       role: "Full Stack Developer",
-      level: "Lv. 26",
+      level: "Perfil técnico",
       className: "Web • Mobile • Backend",
       affinity: "UI / UX + Engineering",
       status: "Disponible para nuevos retos",
     },
+    profileTitle: "Perfil destacado",
+    profileText:
+      "Combino desarrollo frontend, backend y móvil con una visión enfocada en producto, diseño visual y estructura técnica.",
     cards: [
       {
         title: "Stack principal",
@@ -65,17 +70,20 @@ const content = {
       {
         title: "Mobile",
         value:
-          "Aplicaciones móviles con Kotlin, JavaScript and React Native (Multiplataform)",
+          "Aplicaciones móviles con Kotlin, JavaScript y React Native",
         icon: Smartphone,
       },
     ],
   },
   en: {
-    badge: "Player Profile • Full Stack Developer",
-    intro: "Hi, I’m Anahí Betzabé Lozano de Lira",
-    title1: "I design and build",
-    title2: "digital products",
-    title3: "that are modern, functional and visually solid.",
+    badge: "Creative Developer Portfolio",
+    eyebrow: "Hi, I’m Anahí Betzabé Lozano de Lira",
+    titleLines: [
+      "I design and build",
+      "digital products",
+      "that are modern, functional",
+      "and visually solid",
+    ],
     description:
       "I am a Full Stack Developer focused on creating web and mobile experiences with strong technical foundations and refined visual execution. I work with Angular, Node.js, React, MySQL, REST APIs and Kotlin to build solutions that combine interface, logic, structure and scalability.",
     subdescription:
@@ -85,11 +93,14 @@ const content = {
     tertiary: "GitHub",
     stats: {
       role: "Full Stack Developer",
-      level: "Lv. 24",
+      level: "Technical profile",
       className: "Web • Mobile • Backend",
       affinity: "UI / UX + Engineering",
       status: "Open to new challenges",
     },
+    profileTitle: "Featured profile",
+    profileText:
+      "I combine frontend, backend and mobile development with a product-focused mindset, visual design sensitivity and technical structure.",
     cards: [
       {
         title: "Core stack",
@@ -104,7 +115,7 @@ const content = {
       {
         title: "Mobile",
         value:
-          "Mobile applications with Kotlin JavaScript y React Native (Multiplataforma)",
+          "Mobile applications with Kotlin, JavaScript and React Native",
         icon: Smartphone,
       },
     ],
@@ -117,12 +128,12 @@ export default function Hero({ language }: HeroProps) {
   return (
     <section
       id="home"
-      className="relative flex min-h-[100vh] items-center overflow-hidden px-0 pb-16 pt-28 md:py-24"
+      className="relative flex min-h-screen items-center overflow-hidden px-0 pb-16 pt-28 md:pb-20 md:pt-32"
     >
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-[-120px] top-10 h-72 w-72 rounded-full bg-fuchsia-400/15 blur-3xl" />
-        <div className="absolute right-[-80px] top-16 h-80 w-80 rounded-full bg-violet-400/15 blur-3xl" />
-        <div className="absolute bottom-[-40px] left-1/3 h-72 w-72 rounded-full bg-pink-300/10 blur-3xl" />
+        <div className="absolute left-[-120px] top-10 h-72 w-72 rounded-full bg-pink-300/20 blur-3xl" />
+        <div className="absolute right-[-80px] top-16 h-80 w-80 rounded-full bg-violet-300/20 blur-3xl" />
+        <div className="absolute bottom-[-40px] left-1/3 h-72 w-72 rounded-full bg-amber-100/20 blur-3xl" />
       </div>
 
       <div className="w-full max-w-6xl">
@@ -130,132 +141,23 @@ export default function Hero({ language }: HeroProps) {
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="game-label retro-badge"
+          className="manhwa-kicker"
         >
           <Sparkles className="h-3.5 w-3.5" />
           {t.badge}
         </motion.div>
 
-        <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-[320px_minmax(0,1fr)]">
-          <motion.aside
+        <div className="mt-8 grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,1.1fr)_320px] xl:items-start">
+          <motion.div
             custom={1}
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="rpg-window console-shell arcade-corners pixel-console"
+            className="manhwa-shell"
           >
-            <div className="rpg-window__bar console-topbar">
-              <div className="rpg-window__title console-brand">Player Data</div>
-              <div className="rpg-window__dots console-leds">
-                <span />
-                <span />
-                <span />
-              </div>
-            </div>
-
-            <div className="space-y-4 p-5">
-              <div className="game-screen retro-screen p-4">
-                <div className="mb-4 flex items-center justify-between gap-3">
-                  <div className="pacman-row">
-                    <span className="pacman" />
-                    <span className="pacdot" />
-                    <span className="pacdot" />
-                    <span className="pacdot" />
-                    <span className="power-pellet" />
-                  </div>
-
-                  <div className="arcade-ghost arcade-ghost--blue" />
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-fuchsia-300/20 bg-gradient-to-br from-fuchsia-400/20 to-violet-400/20 text-fuchsia-200">
-                    <Heart className="h-5 w-5" />
-                  </div>
-
-                  <div className="min-w-0 text-left">
-                    <p className="text-xs uppercase tracking-[0.18em] text-fuchsia-200/75">
-                      {language === "es" ? "Jugador" : "Player"}
-                    </p>
-                    <p className="truncate text-sm font-semibold text-white">
-                      Anahí Lozano
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="space-y-3">
-                <div className="game-stat">
-                  <span className="game-stat__label">Role</span>
-                  <span className="game-stat__value">{t.stats.role}</span>
-                </div>
-
-                <div className="game-stat">
-                  <span className="game-stat__label">Level</span>
-                  <span className="game-stat__value">{t.stats.level}</span>
-                </div>
-
-                <div className="game-stat">
-                  <span className="game-stat__label">Class</span>
-                  <span className="game-stat__value">{t.stats.className}</span>
-                </div>
-
-                <div className="game-stat">
-                  <span className="game-stat__label">Affinity</span>
-                  <span className="game-stat__value">{t.stats.affinity}</span>
-                </div>
-              </div>
-
-              <div className="game-divider" />
-
-              <div className="space-y-3 text-left">
-                <div className="game-chip">
-                  <Shield className="h-3.5 w-3.5 text-fuchsia-200" />
-                  {t.stats.status}
-                </div>
-
-                <div className="game-chip">
-                  <Star className="h-3.5 w-3.5 text-violet-200" />
-                  {language === "es"
-                    ? "Frontend + Backend"
-                    : "Frontend + Backend"}
-                </div>
-
-                <div className="game-chip">
-                  <Sparkles className="h-3.5 w-3.5 text-pink-200" />
-                  {language === "es" ? "Diseño cuidado" : "Polished design"}
-                </div>
-              </div>
-
-              <div className="game-divider" />
-
-              <div className="retro-controls pt-1">
-                <div className="dpad" />
-
-                <div className="console-mini-buttons">
-                  <span />
-                  <span />
-                </div>
-
-                <div className="arcade-pad-buttons">
-                  <span />
-                  <span />
-                  <span />
-                  <span />
-                </div>
-              </div>
-            </div>
-          </motion.aside>
-
-          <motion.div
-            custom={2}
-            initial="hidden"
-            animate="visible"
-            variants={fadeUp}
-            className="rpg-window console-shell arcade-corners"
-          >
-            <div className="rpg-window__bar console-topbar">
-              <div className="rpg-window__title console-brand">Main Quest</div>
-              <div className="rpg-window__dots console-leds">
+            <div className="manhwa-shell__bar">
+              
+              <div className="manhwa-shell__dots">
                 <span />
                 <span />
                 <span />
@@ -264,69 +166,97 @@ export default function Hero({ language }: HeroProps) {
 
             <div className="p-5 md:p-7">
               <motion.p
-                custom={3}
+                custom={2}
                 initial="hidden"
                 animate="visible"
                 variants={fadeUp}
-                className="text-left text-xs uppercase tracking-[0.28em] text-slate-400"
+                className="text-left text-[11px] font-black uppercase tracking-[0.24em] md:text-xs"
+                style={{ color: "var(--pink-ink)" }}
               >
-                {t.intro}
+                {t.eyebrow}
               </motion.p>
 
               <motion.h1
+                custom={2}
+                initial="hidden"
+                animate="visible"
+                variants={fadeUp}
+                className="mt-4 flex max-w-5xl flex-col gap-1 leading-[0.9] tracking-[-0.07em]"
+              >
+                {t.titleLines.map((line, index) => (
+                  <span
+                    key={index}
+                    className="block font-black text-[clamp(2.9rem,6vw,5.6rem)]"
+                    style={{
+                      color: "var(--text-ultra)",
+                      textShadow:
+                        "0 1px 0 rgba(255,255,255,0.82), 0 5px 12px rgba(218,170,198,0.14)",
+                    }}
+                  >
+                    {line}
+                  </span>
+                ))}
+              </motion.h1>
+
+              <motion.div
                 custom={4}
                 initial="hidden"
                 animate="visible"
                 variants={fadeUp}
-                className="pixel-title glow-text mt-4 text-left text-4xl text-white md:text-6xl"
+                className="mt-6 rounded-[1.8rem] border p-5 md:p-6"
+                style={{
+                  borderColor: "var(--border-soft)",
+                  background:
+                    "linear-gradient(135deg, rgba(255,236,244,0.9), rgba(243,238,255,0.78), rgba(255,244,206,0.58))",
+                  boxShadow: "0 14px 28px rgba(227, 191, 210, 0.12)",
+                }}
               >
-                <span className="block">{t.title1}</span>
-                <span className="game-title-gradient block">{t.title2}</span>
-                <span className="mt-2 block text-slate-200">{t.title3}</span>
-              </motion.h1>
+                <div className="mb-4 flex flex-wrap items-center justify-between gap-4">
+                  <div className="flex flex-wrap gap-2">
+                    <span className="manhwa-kicker">
+                      <Shield className="h-3.5 w-3.5" />
+                      {t.stats.status}
+                    </span>
+
+                    <span className="manhwa-kicker">
+                      <Star className="h-3.5 w-3.5 fill-current" />
+                      {t.stats.affinity}
+                    </span>
+                  </div>
+
+                  <div
+                    className="flex items-center gap-2"
+                    style={{ color: "var(--pink-ink)" }}
+                  >
+                    <Heart size={14} className="fill-current" />
+                    <Star size={14} className="fill-current" />
+                    <Sparkles size={14} />
+                  </div>
+                </div>
+
+                <p
+                  className="text-left text-sm leading-7 md:text-base"
+                  style={{ color: "var(--text-strong)" }}
+                >
+                  {t.description}
+                </p>
+
+                <p
+                  className="mt-3 text-left text-sm leading-7 md:text-base"
+                  style={{ color: "var(--text-main)" }}
+                >
+                  {t.subdescription}
+                </p>
+              </motion.div>
 
               <motion.div
                 custom={5}
                 initial="hidden"
                 animate="visible"
                 variants={fadeUp}
-                className="mt-6"
-              >
-                <div className="game-screen retro-screen p-5 md:p-6">
-                  <div className="mb-4 flex flex-wrap items-center justify-between gap-4">
-                    <div className="pacman-row">
-                      <span className="pacman" />
-                      <span className="pacdot" />
-                      <span className="pacdot" />
-                      <span className="pacdot" />
-                      <span className="power-pellet" />
-                      <span className="arcade-ghost arcade-ghost--violet" />
-                    </div>
-
-                    <div className="retro-badge">
-                      <Gamepad2 className="h-3.5 w-3.5" />
-                      {language === "es" ? "Modo creativo" : "Creative mode"}
-                    </div>
-                  </div>
-
-                  <p className="text-left text-sm leading-7 text-slate-300 md:text-base">
-                    {t.description}
-                  </p>
-
-                  <p className="mt-3 text-left text-sm leading-7 text-slate-400">
-                    {t.subdescription}
-                  </p>
-                </div>
-              </motion.div>
-
-              <motion.div
-                custom={6}
-                initial="hidden"
-                animate="visible"
-                variants={fadeUp}
                 className="mt-8 flex flex-wrap gap-3"
               >
-                <a href="#projects" className="arcade-button retro-boost">
+                <a href="#projects" className="arcade-button">
                   {t.primary}
                   <ArrowRight className="h-4 w-4" />
                 </a>
@@ -345,20 +275,101 @@ export default function Hero({ language }: HeroProps) {
                   {t.tertiary}
                 </a>
               </motion.div>
+            </div>
+          </motion.div>
 
-              <div className="mt-6 flex items-center justify-center md:justify-start">
-                <div className="pacman-row">
-                  <span className="pacman" />
-                  <span className="pacdot" />
-                  <span className="pacdot" />
-                  <span className="pacdot" />
-                  <span className="pacdot" />
-                  <span className="power-pellet" />
-                  <span className="arcade-ghost" />
+          <motion.aside
+            custom={6}
+            initial="hidden"
+            animate="visible"
+            variants={fadeUp}
+            className="manhwa-shell self-start"
+          >
+            <div className="manhwa-shell__bar">
+              <div className="manhwa-shell__title">
+                <Sparkles size={13} />
+                {t.profileTitle}
+              </div>
+              <div className="manhwa-shell__dots">
+                <span />
+                <span />
+                <span />
+              </div>
+            </div>
+
+            <div className="p-5 md:p-6">
+              <div className="about-editorial__story">
+                <div className="mb-4 flex items-center gap-3">
+                  <div className="about-editorial__miniIcon !h-14 !w-14 !rounded-[1.2rem]">
+                    <Heart className="h-5 w-5" />
+                  </div>
+
+                  <div className="min-w-0 text-left">
+                    <p
+                      className="text-[11px] font-black uppercase tracking-[0.2em]"
+                      style={{ color: "var(--pink-ink)" }}
+                    >
+                      {language === "es" ? "Perfil" : "Profile"}
+                    </p>
+                    <p
+                      className="truncate text-base font-black"
+                      style={{ color: "var(--text-ultra)" }}
+                    >
+                      Anahí Lozano
+                    </p>
+                  </div>
+                </div>
+
+                <h3
+                  className="text-2xl font-black tracking-[-0.05em]"
+                  style={{ color: "var(--text-ultra)" }}
+                >
+                  {t.stats.role}
+                </h3>
+
+                <p
+                  className="mt-3 text-sm leading-7"
+                  style={{ color: "var(--text-strong)" }}
+                >
+                  {t.profileText}
+                </p>
+
+                <div className="mt-5 space-y-3">
+                  <div className="about-editorial__highlight">
+                    <div className="about-editorial__highlightLabel">Role</div>
+                    <div className="about-editorial__highlightText">
+                      {t.stats.role}
+                    </div>
+                  </div>
+
+                  <div className="about-editorial__highlight">
+                    <div className="about-editorial__highlightLabel">Focus</div>
+                    <div className="about-editorial__highlightText">
+                      {t.stats.className}
+                    </div>
+                  </div>
+
+                  <div className="about-editorial__highlight">
+                    <div className="about-editorial__highlightLabel">
+                      Affinity
+                    </div>
+                    <div className="about-editorial__highlightText">
+                      {t.stats.affinity}
+                    </div>
+                  </div>
+
+                  <div className="about-editorial__highlight">
+                    <div className="about-editorial__highlightLabel">
+                      Status
+                    </div>
+                    <div className="about-editorial__highlightText">
+                      {t.stats.status}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </motion.div>
+          </motion.aside>
         </div>
 
         <motion.div
@@ -372,39 +383,40 @@ export default function Hero({ language }: HeroProps) {
             const Icon = card.icon;
 
             return (
-              <motion.div
+              <motion.article
                 key={card.title}
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.2 }}
-                className="game-card console-screen p-5 text-left"
+                className="about-editorial__miniCard text-left"
               >
-                <div className="mb-4 flex items-center justify-between gap-3">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-fuchsia-300/15 bg-gradient-to-br from-fuchsia-500/20 to-violet-500/20 text-fuchsia-200">
-                    <Icon className="h-4 w-4" />
+                <div className="about-editorial__miniHeader">
+                  <div className="about-editorial__miniIcon">
+                    <Icon className="h-5 w-5" />
                   </div>
 
-                  <span className="game-chip">
+                  <div className="about-editorial__miniBadge">
                     {language === "es" ? "Skill" : "Skill"}
-                  </span>
-                </div>
-
-                <div className="mb-3 flex items-center justify-between gap-3">
-                  <div className="pacman-row">
-                    <span className="pacman" />
-                    <span className="pacdot" />
-                    <span className="pacdot" />
                   </div>
-                  <div className="arcade-ghost arcade-ghost--blue" />
                 </div>
 
-                <p className="text-[11px] uppercase tracking-[0.2em] text-fuchsia-200/80">
+                <div
+                  className="mt-4 flex items-center gap-2"
+                  style={{ color: "var(--pink-ink)" }}
+                >
+                  <Heart size={12} className="fill-current" />
+                  <Star size={12} className="fill-current" />
+                  <Sparkles size={12} />
+                </div>
+
+                <p
+                  className="mt-4 text-[11px] font-black uppercase tracking-[0.2em]"
+                  style={{ color: "var(--pink-ink)" }}
+                >
                   {card.title}
                 </p>
 
-                <p className="mt-2 text-sm font-semibold leading-6 text-white">
-                  {card.value}
-                </p>
-              </motion.div>
+                <h3 className="about-editorial__miniTitle">{card.value}</h3>
+              </motion.article>
             );
           })}
         </motion.div>

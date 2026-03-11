@@ -3,8 +3,8 @@ import {
   Sparkles,
   Clock3,
   BriefcaseBusiness,
-  Gamepad2,
   Star,
+  Shield,
 } from "lucide-react";
 import { experience } from "../components/dataprojetcts/experience";
 import type { Language } from "../App";
@@ -29,19 +29,35 @@ const fadeUp: Variants = {
 const content = {
   es: {
     badge: "Experiencia",
-    title: "Experiencia relevante",
-    panelTitle: "Mission Log",
+    eyebrow: "Professional journey",
+    titleLines: ["Experiencia", "relevante"],
+    intro:
+      "Experiencias y proyectos donde he desarrollado producto, frontend, backend y soluciones técnicas con enfoque visual, estructural y funcional.",
+    panelTitle: "Experience editorial",
     stackLabel: "Stack",
     periodLabel: "Periodo",
     roleLabel: "Rol",
+    companyLabel: "Empresa",
+    experienceLabel: "Experiencia",
+    featuredTitle: "Trayectoria",
+    featuredText:
+      "He participado en proyectos académicos, profesionales y de desarrollo aplicado donde combino implementación técnica, diseño de interfaces y estructura de producto.",
   },
   en: {
     badge: "Experience",
-    title: "Relevant experience",
-    panelTitle: "Mission Log",
+    eyebrow: "Professional journey",
+    titleLines: ["Relevant", "experience"],
+    intro:
+      "Experiences and projects where I have built product-focused, frontend, backend and technical solutions with a strong visual and structural approach.",
+    panelTitle: "Experience editorial",
     stackLabel: "Stack",
     periodLabel: "Period",
     roleLabel: "Role",
+    companyLabel: "Company",
+    experienceLabel: "Experience",
+    featuredTitle: "Journey",
+    featuredText:
+      "I have contributed to academic, professional and applied development projects where I combine technical implementation, interface design and product structure.",
   },
 };
 
@@ -49,31 +65,139 @@ export default function Experience({ language }: ExperienceProps) {
   const t = content[language];
 
   return (
-    <section id="experience" className="py-16 md:py-24">
+    <section id="experience" className="py-20 md:py-24">
       <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
         variants={fadeUp}
+        className="relative"
       >
-        <div className="game-label retro-badge">
-          <Sparkles className="h-4 w-4" />
-          {t.badge}
-        </div>
+        <div className="grid gap-8 xl:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)] xl:items-center">
+          <div className="max-w-4xl">
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="manhwa-kicker">
+                <Sparkles className="h-4 w-4" />
+                {t.badge}
+              </div>
 
-        <h2 className="pixel-title glow-text mt-5 text-3xl text-white md:text-5xl">
-          <span className="game-title-gradient">{t.title}</span>
-        </h2>
+              <div className="manhwa-kicker">
+                <Star className="h-4 w-4 fill-current" />
+                {t.experienceLabel}
+              </div>
+            </div>
 
-        <div className="mt-4 flex items-center justify-start">
-          <div className="pacman-row">
-            <span className="pacman" />
-            <span className="pacdot" />
-            <span className="pacdot" />
-            <span className="pacdot" />
-            <span className="power-pellet" />
-            <span className="arcade-ghost arcade-ghost--blue" />
+            <p
+              className="mt-5 text-[11px] font-black uppercase tracking-[0.22em] md:text-xs"
+              style={{ color: "var(--pink-ink)" }}
+            >
+              {t.eyebrow}
+            </p>
+
+            <h2 className="mt-4 flex flex-col gap-1 leading-[0.92] tracking-[-0.07em]">
+              {t.titleLines.map((line, index) => (
+                <span
+                  key={index}
+                  className="block font-black text-[clamp(2.6rem,5vw,4.8rem)]"
+                  style={{
+                    color: "var(--text-ultra)",
+                    textShadow:
+                      "0 1px 0 rgba(255,255,255,0.82), 0 10px 22px rgba(218,170,198,0.14)",
+                  }}
+                >
+                  {line}
+                </span>
+              ))}
+            </h2>
+
+            <p
+              className="mt-6 max-w-2xl text-base leading-8 md:text-lg"
+              style={{ color: "var(--text-strong)" }}
+            >
+              {t.intro}
+            </p>
+
+            <div className="mt-5 flex items-center gap-3" style={{ color: "var(--pink-ink)" }}>
+              <Star size={14} className="fill-current" />
+              <Sparkles size={14} />
+              <Shield size={14} />
+            </div>
           </div>
+
+          <motion.aside
+            custom={1}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="manhwa-shell self-start"
+          >
+            <div className="manhwa-shell__bar">
+              <div className="manhwa-shell__title">
+                <Sparkles size={13} />
+                {t.panelTitle}
+              </div>
+
+              <div className="manhwa-shell__dots">
+                <span />
+                <span />
+                <span />
+              </div>
+            </div>
+
+            <div className="p-5 md:p-6">
+              <div className="about-editorial__story">
+                <div className="mb-4 flex items-center justify-between gap-3">
+                  <div className="manhwa-kicker">
+                    <BriefcaseBusiness className="h-3.5 w-3.5" />
+                    {t.experienceLabel}
+                  </div>
+
+                  <div className="flex items-center gap-2" style={{ color: "var(--pink-ink)" }}>
+                    <Star size={13} className="fill-current" />
+                    <Sparkles size={13} />
+                    <Shield size={13} />
+                  </div>
+                </div>
+
+                <h3
+                  className="text-2xl font-black tracking-[-0.05em] md:text-3xl"
+                  style={{ color: "var(--text-ultra)" }}
+                >
+                  {t.featuredTitle}
+                </h3>
+
+                <p
+                  className="mt-3 text-sm leading-7 md:text-base"
+                  style={{ color: "var(--text-strong)" }}
+                >
+                  {t.featuredText}
+                </p>
+
+                <div className="mt-5 grid gap-3">
+                  <div className="about-editorial__highlight">
+                    <div className="about-editorial__highlightLabel">
+                      {t.badge}
+                    </div>
+                    <div className="about-editorial__highlightText">
+                      {experience.length} {language === "es" ? "entradas principales" : "main entries"}
+                    </div>
+                  </div>
+
+                  <div className="about-editorial__highlight">
+                    <div className="about-editorial__highlightLabel">
+                      {t.stackLabel}
+                    </div>
+                    <div className="about-editorial__highlightText">
+                      {language === "es"
+                        ? "Frontend, backend, móvil y producto"
+                        : "Frontend, backend, mobile and product"}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.aside>
         </div>
 
         <div className="mt-10 space-y-6">
@@ -86,21 +210,22 @@ export default function Experience({ language }: ExperienceProps) {
               language === "es" ? item.descriptionEs : item.descriptionEn;
 
             return (
-              <motion.div
+              <motion.article
                 key={item.titleEn}
-                custom={index + 1}
+                custom={index + 2}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={fadeUp}
-                className="rpg-window console-shell arcade-corners pixel-console"
+                className="manhwa-shell"
               >
-                <div className="rpg-window__bar console-topbar">
-                  <div className="rpg-window__title console-brand">
+                <div className="manhwa-shell__bar">
+                  <div className="manhwa-shell__title">
+                    <Sparkles size={13} />
                     {t.panelTitle} #{String(index + 1).padStart(2, "0")}
                   </div>
 
-                  <div className="rpg-window__dots console-leds">
+                  <div className="manhwa-shell__dots">
                     <span />
                     <span />
                     <span />
@@ -108,105 +233,87 @@ export default function Experience({ language }: ExperienceProps) {
                 </div>
 
                 <div className="p-5 md:p-7">
-                  <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_260px]">
-                    <div className="game-screen retro-screen p-5">
-                      <div className="mb-4 flex items-center justify-between gap-3">
-                        <div className="pacman-row">
-                          <span className="pacman" />
-                          <span className="pacdot" />
-                          <span className="pacdot" />
-                          <span className="power-pellet" />
-                        </div>
+                  <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_300px]">
+                    <div className="about-editorial__story">
+                      <div className="mb-5 flex flex-wrap items-center gap-2">
+                        <span className="manhwa-kicker">
+                          <BriefcaseBusiness className="h-3.5 w-3.5" />
+                          {company}
+                        </span>
 
-                        <div className="retro-badge">
-                          <Gamepad2 className="h-3.5 w-3.5" />
-                          {language === "es" ? "Quest active" : "Quest active"}
-                        </div>
+                        <span className="manhwa-kicker">
+                          <Star className="h-3.5 w-3.5 fill-current" />
+                          {t.experienceLabel}
+                        </span>
                       </div>
 
                       <div className="flex flex-col gap-5 md:flex-row md:items-start">
-                        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-fuchsia-300/15 bg-gradient-to-br from-fuchsia-500/20 to-violet-500/20 text-fuchsia-200">
+                        <div className="about-editorial__miniIcon !h-16 !w-16 !rounded-[1.4rem] shrink-0">
                           <Icon className="h-6 w-6" />
                         </div>
 
-                        <div className="min-w-0 text-left">
-                          <div className="mb-3 flex flex-wrap items-center gap-2">
-                            <span className="game-chip">
-                              <BriefcaseBusiness className="h-3.5 w-3.5 text-fuchsia-200" />
-                              {company}
-                            </span>
-
-                            <span className="game-chip">
-                              <Star className="h-3.5 w-3.5 text-violet-200" />
-                              {language === "es" ? "Experiencia" : "Experience"}
-                            </span>
-                          </div>
-
-                          <h3 className="text-xl font-bold text-white md:text-2xl">
+                        <div className="min-w-0">
+                          <h3
+                            className="text-2xl font-black tracking-[-0.05em] md:text-3xl"
+                            style={{ color: "var(--text-ultra)" }}
+                          >
                             {title}
                           </h3>
 
-                          <p className="mt-4 text-sm leading-7 text-slate-300">
+                          <p
+                            className="mt-4 text-sm leading-8 md:text-base"
+                            style={{ color: "var(--text-strong)" }}
+                          >
                             {description}
                           </p>
                         </div>
                       </div>
                     </div>
 
-                    <div className="space-y-4">
-                      <div className="game-card console-screen p-4">
-                        <div className="mb-3 flex items-center justify-between gap-2">
-                          <div className="flex items-center gap-2">
-                            <Clock3 className="h-4 w-4 text-fuchsia-200" />
-                            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-fuchsia-200/85">
-                              {t.periodLabel}
-                            </p>
+                    <div className="grid gap-4">
+                      <div className="about-editorial__miniCard">
+                        <div className="about-editorial__miniHeader">
+                          <div className="about-editorial__miniIcon">
+                            <Clock3 className="h-5 w-5" />
                           </div>
 
-                          <div className="arcade-ghost arcade-ghost--blue" />
+                          <div className="about-editorial__miniBadge">
+                            {t.periodLabel}
+                          </div>
                         </div>
 
-                        <div className="game-divider mb-3" />
-
-                        <p className="text-sm font-semibold text-white">
-                          {period}
-                        </p>
+                        <h4 className="about-editorial__miniTitle">{period}</h4>
                       </div>
 
-                      <div className="game-card console-screen p-4">
-                        <div className="mb-3 flex items-center justify-between gap-2">
-                          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-fuchsia-200/85">
+                      <div className="about-editorial__miniCard">
+                        <div className="about-editorial__miniHeader">
+                          <div className="about-editorial__miniIcon">
+                            <BriefcaseBusiness className="h-5 w-5" />
+                          </div>
+
+                          <div className="about-editorial__miniBadge">
                             {t.roleLabel}
-                          </p>
-
-                          <div className="pacman-row">
-                            <span className="pacman" />
-                            <span className="pacdot" />
                           </div>
                         </div>
 
-                        <div className="game-divider my-3" />
-
-                        <p className="text-sm font-semibold text-white">
-                          {title}
-                        </p>
+                        <h4 className="about-editorial__miniTitle">{title}</h4>
                       </div>
 
-                      <div className="game-card console-screen p-4">
-                        <div className="mb-3 flex items-center justify-between gap-2">
-                          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-fuchsia-200/85">
-                            {t.stackLabel}
-                          </p>
+                      <div className="about-editorial__miniCard">
+                        <div className="about-editorial__miniHeader">
+                          <div className="about-editorial__miniIcon">
+                            <Sparkles className="h-5 w-5" />
+                          </div>
 
-                          <div className="arcade-ghost arcade-ghost--violet" />
+                          <div className="about-editorial__miniBadge">
+                            {t.stackLabel}
+                          </div>
                         </div>
 
-                        <div className="game-divider my-3" />
-
-                        <div className="flex flex-wrap gap-2">
+                        <div className="mt-4 flex flex-wrap gap-2">
                           {item.stack.split("•").map((tech) => (
-                            <span key={tech.trim()} className="game-chip">
-                              {tech.trim()}
+                            <span key={tech.trim()} className="manhwa-chip">
+                              <span className="manhwa-chip__text">{tech.trim()}</span>
                             </span>
                           ))}
                         </div>
@@ -214,7 +321,7 @@ export default function Experience({ language }: ExperienceProps) {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </motion.article>
             );
           })}
         </div>
