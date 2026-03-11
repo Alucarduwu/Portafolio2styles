@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Languages, Sparkles } from "lucide-react";
+import { Languages, Sparkles, Heart, Star } from "lucide-react";
 import type { Language } from "../App";
 
 interface NavbarProps {
@@ -53,89 +53,138 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const navLinks = [
+    { href: "#about", label: t.about },
+    { href: "#projects", label: t.projects },
+    { href: "#skills", label: t.skills },
+  ];
+
   return (
     <>
       <motion.header
         initial={false}
         animate={{
-          y: isVisible ? 0 : -90,
+          y: isVisible ? 0 : -96,
           opacity: isVisible ? 1 : 0.98,
         }}
         transition={{
           duration: 0.28,
           ease: [0.22, 1, 0.36, 1],
         }}
-        className="fixed inset-x-0 top-0 z-50 px-3 pt-2 sm:px-6 lg:px-8"
+        className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6 lg:px-8"
       >
-        <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-[#09090f]/80 via-[#09090f]/55 to-transparent" />
-
         <div className="mx-auto max-w-7xl">
-          <div className="rpg-window console-shell arcade-corners pixel-console overflow-hidden border border-fuchsia-300/15 bg-[#0b0914]/95 shadow-[0_12px_40px_rgba(0,0,0,0.45)] backdrop-blur-xl supports-[backdrop-filter]:bg-[#0b0914]/90">
-            <div className="flex items-center justify-between gap-3 px-3 py-2.5 sm:px-4">
+          <div
+            className="overflow-hidden"
+            style={{
+              borderRadius: "2rem",
+              border: "1px solid var(--border-soft)",
+              background:
+                "linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,248,252,0.92))",
+              boxShadow:
+                "0 22px 50px rgba(227, 191, 210, 0.18), 0 0 0 1px rgba(255,255,255,0.78) inset",
+              backdropFilter: "blur(14px)",
+            }}
+          >
+            <div
+              className="flex items-center justify-between gap-4 px-5 py-4"
+              style={{
+                borderBottom: "1px solid var(--border-soft)",
+              }}
+            >
               <a href="#home" className="group flex min-w-0 items-center gap-3">
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border border-fuchsia-300/20 bg-gradient-to-br from-fuchsia-500/15 via-violet-500/15 to-pink-400/10 text-fuchsia-200 shadow-[0_0_16px_rgba(244,114,182,0.12)] transition-transform duration-300 group-hover:scale-105">
-                  <Sparkles className="h-4 w-4" />
+                <div
+                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-105"
+                  style={{
+                    border: "1px solid var(--border-strong)",
+                    background:
+                      "linear-gradient(135deg, rgba(255,228,239,0.98), rgba(239,232,255,0.95), rgba(255,244,206,0.82))",
+                    color: "var(--pink-ink)",
+                    boxShadow: "0 10px 22px rgba(231,189,211,0.16)",
+                  }}
+                >
+                  <Sparkles className="h-5 w-5" />
                 </div>
 
                 <div className="min-w-0 text-left leading-tight">
-                  <p className="truncate bg-gradient-to-r from-white via-fuchsia-100 to-violet-200 bg-clip-text text-sm font-semibold text-transparent sm:text-base">
+                  <p
+                    className="truncate text-base font-black tracking-[-0.03em] sm:text-[1.1rem]"
+                    style={{ color: "var(--text-strong)" }}
+                  >
                     Anahí Lozano
                   </p>
-                  <p className="hidden truncate text-[11px] text-slate-400 sm:block">
+                  <p
+                    className="truncate text-sm font-semibold"
+                    style={{ color: "var(--text-soft)" }}
+                  >
                     {t.role}
                   </p>
                 </div>
               </a>
 
-              <div className="hidden items-center gap-3 md:flex">
-                <nav className="game-screen console-screen flex items-center rounded-[1.4rem] px-3 py-2 text-sm text-slate-300">
-                  <div className="mr-3 flex items-center gap-1.5 border-r border-white/8 pr-3">
-                    <span className="pacman" />
-                    <span className="pacdot" />
-                    <span className="pacdot" />
-                  </div>
-
-                  <div className="flex items-center gap-1.5">
+              <div className="hidden items-center gap-4 md:flex">
+                <nav
+                  className="flex items-center gap-1 rounded-full px-2 py-2"
+                  style={{
+                    border: "1px solid var(--border-soft)",
+                    background: "rgba(255,255,255,0.78)",
+                    boxShadow: "0 8px 20px rgba(232,201,216,0.12)",
+                  }}
+                >
+                  {navLinks.map((item) => (
                     <a
-                      href="#about"
-                      className="rounded-full px-4 py-2 text-xs font-medium text-slate-300 transition-all duration-200 hover:bg-white/[0.05] hover:text-fuchsia-200"
+                      key={item.href}
+                      href={item.href}
+                      className="rounded-full px-4 py-2 text-sm font-extrabold tracking-[0.02em] transition-all duration-200 hover:-translate-y-0.5"
+                      style={{
+                        color: "var(--text-main)",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = "var(--rose-milk)";
+                        e.currentTarget.style.color = "var(--pink-ink)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = "transparent";
+                        e.currentTarget.style.color = "var(--text-main)";
+                      }}
                     >
-                      {t.about}
+                      {item.label}
                     </a>
+                  ))}
 
-                    <a
-                      href="#projects"
-                      className="rounded-full px-4 py-2 text-xs font-medium text-slate-300 transition-all duration-200 hover:bg-white/[0.05] hover:text-fuchsia-200"
-                    >
-                      {t.projects}
-                    </a>
-
-                    <a
-                      href="#skills"
-                      className="rounded-full px-4 py-2 text-xs font-medium text-slate-300 transition-all duration-200 hover:bg-white/[0.05] hover:text-fuchsia-200"
-                    >
-                      {t.skills}
-                    </a>
-
-                    <a
-                      href="#contact"
-                      className="rounded-full bg-gradient-to-r from-fuchsia-500/90 via-violet-500/90 to-pink-400/90 px-4 py-2 text-xs font-semibold text-white shadow-[0_0_16px_rgba(244,114,182,0.14)] transition-all duration-200 hover:scale-[1.02]"
-                    >
-                      {t.contact}
-                    </a>
-                  </div>
-
-                  <div className="ml-3 border-l border-white/8 pl-3">
-                    <span className="arcade-ghost arcade-ghost--violet" />
-                  </div>
+                  <a
+                    href="#contact"
+                    className="rounded-full px-4 py-2 text-sm font-black tracking-[0.02em] transition-all duration-200 hover:-translate-y-0.5 hover:scale-[1.02]"
+                    style={{
+                      background:
+                        "linear-gradient(135deg,#ffd0e3 0%,#eadfff 54%,#ffecc1 100%)",
+                      color: "var(--text-strong)",
+                      boxShadow: "0 10px 22px rgba(231,189,211,0.18)",
+                    }}
+                  >
+                    {t.contact}
+                  </a>
                 </nav>
 
-                <div className="game-screen console-screen flex items-center gap-2 rounded-[1.3rem] px-2.5 py-2">
-                  <div className="flex items-center gap-1 px-1.5">
-                    <Languages className="h-3.5 w-3.5 text-fuchsia-200/80" />
+                <div
+                  className="flex items-center gap-2 rounded-full px-2 py-2"
+                  style={{
+                    border: "1px solid var(--border-soft)",
+                    background: "rgba(255,255,255,0.8)",
+                    boxShadow: "0 8px 20px rgba(232,201,216,0.12)",
+                  }}
+                >
+                  <div
+                    className="flex items-center gap-1 px-1.5"
+                    style={{ color: "var(--pink-ink)" }}
+                  >
+                    <Languages className="h-4 w-4" />
                   </div>
 
-                  <div className="relative flex items-center rounded-full bg-white/[0.03] p-1">
+                  <div
+                    className="relative flex items-center rounded-full p-1"
+                    style={{ background: "var(--blush)" }}
+                  >
                     {(["es", "en"] as Language[]).map((lang) => {
                       const isActive = language === lang;
 
@@ -143,7 +192,7 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
                         <button
                           key={lang}
                           onClick={() => setLanguage(lang)}
-                          className="relative min-w-[46px] rounded-full px-3 py-1.5 text-[11px] font-semibold transition-colors duration-300"
+                          className="relative min-w-[52px] rounded-full px-3 py-2 text-sm font-black tracking-[0.04em] transition-colors duration-300"
                         >
                           {isActive && (
                             <motion.span
@@ -153,16 +202,23 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
                                 stiffness: 400,
                                 damping: 30,
                               }}
-                              className="absolute inset-0 rounded-full bg-gradient-to-r from-fuchsia-200 via-pink-100 to-white shadow-[0_4px_14px_rgba(255,255,255,0.12)]"
+                              className="absolute inset-0 rounded-full"
+                              style={{
+                                background:
+                                  "linear-gradient(135deg,#ffd9e8 0%,#f0e5ff 55%,#fff4cf 100%)",
+                                boxShadow:
+                                  "0 6px 16px rgba(231,189,211,0.18)",
+                              }}
                             />
                           )}
 
                           <span
-                            className={`relative z-10 ${
-                              isActive
-                                ? "text-[#111827]"
-                                : "text-slate-300 hover:text-white"
-                            }`}
+                            className="relative z-10"
+                            style={{
+                              color: isActive
+                                ? "var(--text-strong)"
+                                : "var(--text-main)",
+                            }}
                           >
                             {lang.toUpperCase()}
                           </span>
@@ -174,12 +230,25 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
               </div>
 
               <div className="md:hidden">
-                <div className="game-screen console-screen flex items-center gap-1 px-1.5 py-1.5">
-                  <div className="flex items-center gap-1 px-1">
-                    <Languages className="h-3.5 w-3.5 text-fuchsia-200/80" />
+                <div
+                  className="flex items-center gap-2 rounded-full px-2 py-2"
+                  style={{
+                    border: "1px solid var(--border-soft)",
+                    background: "rgba(255,255,255,0.82)",
+                    boxShadow: "0 8px 20px rgba(232,201,216,0.12)",
+                  }}
+                >
+                  <div
+                    className="flex items-center gap-1 px-1"
+                    style={{ color: "var(--pink-ink)" }}
+                  >
+                    <Languages className="h-4 w-4" />
                   </div>
 
-                  <div className="relative flex items-center rounded-full bg-white/[0.03] p-1">
+                  <div
+                    className="relative flex items-center rounded-full p-1"
+                    style={{ background: "var(--blush)" }}
+                  >
                     {(["es", "en"] as Language[]).map((lang) => {
                       const isActive = language === lang;
 
@@ -187,7 +256,7 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
                         <button
                           key={lang}
                           onClick={() => setLanguage(lang)}
-                          className="relative min-w-[42px] rounded-full px-2.5 py-1.5 text-[11px] font-semibold transition-colors duration-300"
+                          className="relative min-w-[42px] rounded-full px-2.5 py-1.5 text-[11px] font-black tracking-[0.05em] transition-colors duration-300"
                         >
                           {isActive && (
                             <motion.span
@@ -197,14 +266,23 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
                                 stiffness: 400,
                                 damping: 30,
                               }}
-                              className="absolute inset-0 rounded-full bg-gradient-to-r from-fuchsia-200 via-pink-100 to-white"
+                              className="absolute inset-0 rounded-full"
+                              style={{
+                                background:
+                                  "linear-gradient(135deg,#ffd9e8 0%,#f0e5ff 55%,#fff4cf 100%)",
+                                boxShadow:
+                                  "0 6px 16px rgba(231,189,211,0.18)",
+                              }}
                             />
                           )}
 
                           <span
-                            className={`relative z-10 ${
-                              isActive ? "text-[#111827]" : "text-slate-300"
-                            }`}
+                            className="relative z-10"
+                            style={{
+                              color: isActive
+                                ? "var(--text-strong)"
+                                : "var(--text-main)",
+                            }}
                           >
                             {lang.toUpperCase()}
                           </span>
@@ -216,48 +294,104 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
               </div>
             </div>
 
-            <nav className="grid grid-cols-4 gap-1 border-t border-white/8 px-2 py-2 md:hidden">
+            <div
+              className="hidden items-center justify-between gap-4 px-5 py-3 md:flex"
+              style={{
+                borderTop: "1px solid rgba(255,255,255,0.25)",
+              }}
+            >
+              <div
+                className="flex items-center gap-2"
+                style={{ color: "var(--pink-ink)" }}
+              >
+                <Heart size={13} className="fill-current" />
+                <Star size={13} className="fill-current" />
+                <Sparkles size={13} />
+              </div>
+
+              <p
+                className="text-xs font-extrabold uppercase tracking-[0.22em]"
+                style={{ color: "var(--text-soft)" }}
+              >
+                
+              </p>
+            </div>
+
+            <nav
+              className="grid grid-cols-4 gap-2 px-3 py-3 md:hidden"
+              style={{
+                borderTop: "1px solid var(--border-soft)",
+              }}
+            >
               <a
                 href="#about"
-                className="rounded-xl px-2 py-2 text-center text-[11px] font-medium text-slate-300 transition-all duration-200 hover:bg-white/[0.05] hover:text-fuchsia-200"
+                className="rounded-2xl px-2 py-2.5 text-center text-[11px] font-black transition-all duration-200 hover:-translate-y-0.5"
+                style={{
+                  background: "rgba(255,255,255,0.78)",
+                  color: "var(--text-main)",
+                }}
               >
                 {t.about}
               </a>
 
               <a
                 href="#projects"
-                className="rounded-xl px-2 py-2 text-center text-[11px] font-medium text-slate-300 transition-all duration-200 hover:bg-white/[0.05] hover:text-fuchsia-200"
+                className="rounded-2xl px-2 py-2.5 text-center text-[11px] font-black transition-all duration-200 hover:-translate-y-0.5"
+                style={{
+                  background: "rgba(255,255,255,0.78)",
+                  color: "var(--text-main)",
+                }}
               >
                 {t.projects}
               </a>
 
               <a
                 href="#skills"
-                className="rounded-xl px-2 py-2 text-center text-[11px] font-medium text-slate-300 transition-all duration-200 hover:bg-white/[0.05] hover:text-fuchsia-200"
+                className="rounded-2xl px-2 py-2.5 text-center text-[11px] font-black transition-all duration-200 hover:-translate-y-0.5"
+                style={{
+                  background: "rgba(255,255,255,0.78)",
+                  color: "var(--text-main)",
+                }}
               >
                 {t.skills}
               </a>
 
               <a
                 href="#contact"
-                className="rounded-xl bg-gradient-to-r from-fuchsia-500/90 via-violet-500/90 to-pink-400/90 px-2 py-2 text-center text-[11px] font-semibold text-white"
+                className="rounded-2xl px-2 py-2.5 text-center text-[11px] font-black shadow-[0_8px_18px_rgba(231,189,211,0.16)]"
+                style={{
+                  background:
+                    "linear-gradient(135deg,#ffd0e3 0%,#eadfff 54%,#ffecc1 100%)",
+                  color: "var(--text-strong)",
+                }}
               >
                 {t.contact}
               </a>
             </nav>
 
-            <div className="flex items-center justify-center gap-2 border-t border-white/8 px-3 py-2 md:hidden">
-              <span className="pacman" />
-              <span className="pacdot" />
-              <span className="pacdot" />
-              <span className="power-pellet" />
-              <span className="arcade-ghost arcade-ghost--violet" />
+            <div
+              className="flex items-center justify-center gap-2 px-3 py-2.5 md:hidden"
+              style={{
+                borderTop: "1px solid var(--border-soft)",
+              }}
+            >
+              <Heart
+                size={12}
+                className="fill-current"
+                style={{ color: "var(--pink-ink)" }}
+              />
+              <Star
+                size={12}
+                className="fill-current"
+                style={{ color: "var(--violet-strong)" }}
+              />
+              <Sparkles size={12} style={{ color: "var(--pink-ink)" }} />
             </div>
           </div>
         </div>
       </motion.header>
 
-      <div className="h-[96px] md:h-[84px]" />
+      <div className="h-[116px] md:h-[100px]" />
     </>
   );
 }

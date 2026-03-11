@@ -9,8 +9,8 @@ import {
   X,
   FolderOpen,
   Image as ImageIcon,
-  Gamepad2,
   Star,
+  Heart,
 } from "lucide-react";
 import { projects } from "../components/dataprojetcts/projects";
 import type { Language } from "../App";
@@ -99,7 +99,10 @@ const imageVariants: Variants = {
 const content = {
   es: {
     badge: "Proyectos",
-    title: "Proyectos destacados",
+    eyebrow: "Selected work",
+    titleLines: ["Proyectos", "destacados"],
+    intro:
+      "Una selección de proyectos donde combino diseño visual, arquitectura frontend/backend, experiencia de usuario y desarrollo móvil.",
     github: "GitHub",
     demo: "Demo",
     previous: "Anterior",
@@ -108,14 +111,25 @@ const content = {
     close: "Cerrar",
     screenshots: "Capturas del proyecto",
     openGallery: "Ver galería",
-    panelTitle: "Mission Select",
+    panelTitle: "Project editorial",
     projectLabel: "Proyecto",
     resources: "Recursos",
     preview: "Vista previa",
+    status: "Estado",
+    active: "Activo",
+    featured: "Destacado",
+    portfolio: "Portfolio",
+    featuredTitle: "Project showcase",
+    featuredText:
+      "Proyectos construidos con enfoque en producto, detalle visual, estructura técnica y experiencias digitales funcionales.",
+    thumbnails: "Miniaturas",
   },
   en: {
     badge: "Projects",
-    title: "Featured projects",
+    eyebrow: "Selected work",
+    titleLines: ["Featured", "projects"],
+    intro:
+      "A curated selection of projects where I combine visual design, frontend/backend architecture, user experience and mobile development.",
     github: "GitHub",
     demo: "Demo",
     previous: "Previous",
@@ -124,10 +138,18 @@ const content = {
     close: "Close",
     screenshots: "Project screenshots",
     openGallery: "View gallery",
-    panelTitle: "Mission Select",
+    panelTitle: "Project editorial",
     projectLabel: "Project",
     resources: "Resources",
     preview: "Preview",
+    status: "Status",
+    active: "Active",
+    featured: "Featured",
+    portfolio: "Portfolio",
+    featuredTitle: "Project showcase",
+    featuredText:
+      "Projects built with a focus on product thinking, visual detail, technical structure and functional digital experiences.",
+    thumbnails: "Thumbnails",
   },
 };
 
@@ -208,59 +230,156 @@ export default function Projects({ language }: ProjectsProps) {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [activeProject, activeImageIndex]);
+  }, [activeProject]);
 
   return (
-    <section id="projects" className="py-16 md:py-24">
+    <section id="projects" className="py-20 md:py-24">
       <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
         variants={fadeUp}
+        className="relative"
       >
-        <div className="game-label retro-badge">
-          <Sparkles className="h-4 w-4" />
-          {t.badge}
-        </div>
+        <div className="grid gap-8 xl:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)] xl:items-center">
+          <div className="max-w-4xl">
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="manhwa-kicker">
+                <Sparkles className="h-4 w-4" />
+                {t.badge}
+              </div>
 
-        <div className="mt-5 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-          <div>
-            <h2 className="pixel-title glow-text text-3xl text-white md:text-5xl">
-              <span className="game-title-gradient">{t.title}</span>
-            </h2>
-
-            <div className="mt-4 flex items-center justify-start">
-              <div className="pacman-row">
-                <span className="pacman" />
-                <span className="pacdot" />
-                <span className="pacdot" />
-                <span className="pacdot" />
-                <span className="power-pellet" />
-                <span className="arcade-ghost arcade-ghost--violet" />
+              <div className="manhwa-kicker">
+                <Star className="h-4 w-4 fill-current" />
+                {t.featured}
               </div>
             </div>
+
+            <p
+              className="mt-5 text-[11px] font-black uppercase tracking-[0.22em] md:text-xs"
+              style={{ color: "var(--pink-ink)" }}
+            >
+              {t.eyebrow}
+            </p>
+
+            <h2 className="mt-4 flex flex-col gap-1 leading-[0.92] tracking-[-0.07em]">
+              {t.titleLines.map((line, index) => (
+                <span
+                  key={index}
+                  className="block font-black text-[clamp(2.6rem,5vw,4.8rem)]"
+                  style={{
+                    color: "var(--text-ultra)",
+                    textShadow:
+                      "0 1px 0 rgba(255,255,255,0.82), 0 10px 22px rgba(218,170,198,0.14)",
+                  }}
+                >
+                  {line}
+                </span>
+              ))}
+            </h2>
+
+            <p
+              className="mt-6 max-w-2xl text-base leading-8 md:text-lg"
+              style={{ color: "var(--text-strong)" }}
+            >
+              {t.intro}
+            </p>
           </div>
 
-          <div className="flex items-center gap-3">
-            <button
-              onClick={goPrev}
-              aria-label={t.previous}
-              className="game-button-secondary h-11 w-11 shrink-0 p-0"
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </button>
+          <motion.aside
+            custom={1}
+            initial="hidden"
+            whileInView="visible"
+            variants={fadeUp}
+            className="manhwa-shell self-start"
+          >
+            <div className="manhwa-shell__bar">
+              <div className="manhwa-shell__title">
+                <Sparkles size={13} />
+                {t.panelTitle}
+              </div>
 
-            <button
-              onClick={goNext}
-              aria-label={t.next}
-              className="game-button-secondary h-11 w-11 shrink-0 p-0"
-            >
-              <ChevronRight className="h-5 w-5" />
-            </button>
-          </div>
+              <div className="manhwa-shell__dots">
+                <span />
+                <span />
+                <span />
+              </div>
+            </div>
+
+            <div className="p-5 md:p-6">
+              <div className="about-editorial__story">
+                <div className="mb-4 flex items-center justify-between gap-3">
+                  <div className="manhwa-kicker">
+                    <FolderOpen className="h-3.5 w-3.5" />
+                    {t.projectLabel}
+                  </div>
+
+                  <div className="flex items-center gap-2" style={{ color: "var(--pink-ink)" }}>
+                    <Heart size={13} className="fill-current" />
+                    <Star size={13} className="fill-current" />
+                    <Sparkles size={13} />
+                  </div>
+                </div>
+
+                <h3
+                  className="text-2xl font-black tracking-[-0.05em] md:text-3xl"
+                  style={{ color: "var(--text-ultra)" }}
+                >
+                  {t.featuredTitle}
+                </h3>
+
+                <p
+                  className="mt-3 text-sm leading-7 md:text-base"
+                  style={{ color: "var(--text-strong)" }}
+                >
+                  {t.featuredText}
+                </p>
+
+                <div className="mt-5 grid gap-3">
+                  <div className="about-editorial__highlight">
+                    <div className="about-editorial__highlightLabel">
+                      {t.badge}
+                    </div>
+                    <div className="about-editorial__highlightText">
+                      {projects.length} {language === "es" ? "proyectos visibles" : "visible projects"}
+                    </div>
+                  </div>
+
+                  <div className="about-editorial__highlight">
+                    <div className="about-editorial__highlightLabel">
+                      {t.resources}
+                    </div>
+                    <div className="about-editorial__highlightText">
+                      {language === "es"
+                        ? "Galería, repositorio y demo"
+                        : "Gallery, repository and demo"}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.aside>
         </div>
 
-        <div className="mt-10 overflow-hidden">
+        <div className="mt-8 flex items-center gap-3">
+          <button
+            onClick={goPrev}
+            aria-label={t.previous}
+            className="game-button-secondary h-11 w-11 shrink-0 p-0"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+
+          <button
+            onClick={goNext}
+            aria-label={t.next}
+            className="game-button-secondary h-11 w-11 shrink-0 p-0"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+        </div>
+
+        <div className="mt-8 overflow-hidden">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={current}
@@ -291,14 +410,15 @@ export default function Projects({ language }: ProjectsProps) {
                   <motion.article
                     key={`${project.titleEn}-${current}`}
                     layout
-                    className="rpg-window console-shell arcade-corners pixel-console overflow-hidden"
+                    className="manhwa-shell overflow-hidden"
                   >
-                    <div className="rpg-window__bar console-topbar">
-                      <div className="rpg-window__title console-brand">
+                    <div className="manhwa-shell__bar">
+                      <div className="manhwa-shell__title">
+                        <Sparkles size={13} />
                         {t.panelTitle} #{String(realProjectIndex + 1).padStart(2, "0")}
                       </div>
 
-                      <div className="rpg-window__dots console-leds">
+                      <div className="manhwa-shell__dots">
                         <span />
                         <span />
                         <span />
@@ -306,35 +426,40 @@ export default function Projects({ language }: ProjectsProps) {
                     </div>
 
                     <div className="p-5 md:p-6">
-                      <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_220px]">
+                      <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_220px]">
                         <div className="space-y-5">
                           <button
                             type="button"
                             onClick={() => openGallery(realProjectIndex)}
-                            className="game-screen retro-screen group relative block h-64 w-full overflow-hidden rounded-[1.25rem] text-left"
+                            className="relative block h-64 w-full overflow-hidden rounded-[1.5rem] border text-left transition-transform duration-300 hover:-translate-y-1"
+                            style={{
+                              borderColor: "var(--border-soft)",
+                              boxShadow: "0 14px 28px rgba(227, 191, 210, 0.12)",
+                            }}
                           >
                             <img
                               src={previewImage}
                               alt={title}
-                              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                              className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
                             />
 
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#09090f]/90 via-[#09090f]/40 to-transparent" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[rgba(55,36,47,0.78)] via-[rgba(55,36,47,0.18)] to-transparent" />
 
                             <div className="absolute left-4 top-4 z-10">
-                              <div className="pacman-row">
-                                <span className="pacman" />
-                                <span className="pacdot" />
-                                <span className="pacdot" />
-                                <span className="arcade-ghost arcade-ghost--blue" />
+                              <div className="manhwa-kicker">
+                                <ImageIcon className="h-3.5 w-3.5" />
+                                {t.preview}
                               </div>
                             </div>
 
                             <div className="absolute inset-x-0 bottom-0 p-5">
                               <div className="flex flex-wrap items-end justify-between gap-3">
                                 <div className="min-w-0">
-                                  <p className="text-[11px] uppercase tracking-[0.2em] text-fuchsia-200/75">
-                                    {t.preview}
+                                  <p
+                                    className="text-[11px] uppercase tracking-[0.2em]"
+                                    style={{ color: "rgba(255,255,255,0.78)" }}
+                                  >
+                                    {t.projectLabel}
                                   </p>
                                   <p className="mt-1 line-clamp-1 text-lg font-semibold text-white">
                                     {title}
@@ -342,8 +467,8 @@ export default function Projects({ language }: ProjectsProps) {
                                 </div>
 
                                 {project.images?.length > 1 && (
-                                  <span className="game-chip">
-                                    <ImageIcon className="h-3.5 w-3.5 text-fuchsia-200" />
+                                  <span className="manhwa-kicker">
+                                    <ImageIcon className="h-3.5 w-3.5" />
                                     {project.images.length} {t.gallery}
                                   </span>
                                 )}
@@ -351,42 +476,51 @@ export default function Projects({ language }: ProjectsProps) {
                             </div>
                           </button>
 
-                          <div className="game-screen console-screen p-5">
+                          <div className="about-editorial__story">
                             <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
                               <div className="flex flex-wrap gap-2">
-                                <span className="game-chip">
-                                  <FolderOpen className="h-3.5 w-3.5 text-fuchsia-200" />
+                                <span className="manhwa-kicker">
+                                  <FolderOpen className="h-3.5 w-3.5" />
                                   {t.projectLabel}
                                 </span>
 
-                                <span className="game-chip">{project.stack}</span>
+                                <span className="manhwa-kicker">
+                                  <Sparkles className="h-3.5 w-3.5" />
+                                  {project.stack}
+                                </span>
                               </div>
 
-                              <div className="retro-badge">
-                                <Gamepad2 className="h-3.5 w-3.5" />
-                                {language === "es" ? "Select" : "Select"}
+                              <div
+                                className="flex items-center gap-2"
+                                style={{ color: "var(--pink-ink)" }}
+                              >
+                                <Heart size={12} className="fill-current" />
+                                <Star size={12} className="fill-current" />
                               </div>
                             </div>
 
-                            <p className="text-left text-sm leading-7 text-slate-300">
+                            <p
+                              className="text-left text-sm leading-7 md:text-base"
+                              style={{ color: "var(--text-strong)" }}
+                            >
                               {description}
                             </p>
                           </div>
                         </div>
 
                         <div className="space-y-4">
-                          <div className="game-card console-screen p-4">
-                            <div className="mb-3 flex items-center justify-between gap-2">
-                              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-fuchsia-200/85">
-                                {t.resources}
-                              </p>
+                          <div className="about-editorial__miniCard">
+                            <div className="about-editorial__miniHeader">
+                              <div className="about-editorial__miniIcon">
+                                <Sparkles className="h-5 w-5" />
+                              </div>
 
-                              <div className="arcade-ghost arcade-ghost--violet" />
+                              <div className="about-editorial__miniBadge">
+                                {t.resources}
+                              </div>
                             </div>
 
-                            <div className="game-divider my-4" />
-
-                            <div className="flex flex-col gap-3">
+                            <div className="mt-4 flex flex-col gap-3">
                               <button
                                 type="button"
                                 onClick={() => openGallery(realProjectIndex)}
@@ -413,7 +547,7 @@ export default function Projects({ language }: ProjectsProps) {
                                   href={project.demo}
                                   target="_blank"
                                   rel="noreferrer"
-                                  className="arcade-button retro-boost w-full justify-start"
+                                  className="arcade-button w-full justify-start"
                                 >
                                   <ExternalLink className="h-4 w-4" />
                                   {t.demo}
@@ -422,30 +556,26 @@ export default function Projects({ language }: ProjectsProps) {
                             </div>
                           </div>
 
-                          <div className="game-card console-screen p-4">
-                            <div className="mb-3 flex items-center justify-between gap-2">
-                              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-fuchsia-200/85">
-                                {language === "es" ? "Estado" : "Status"}
-                              </p>
+                          <div className="about-editorial__miniCard">
+                            <div className="about-editorial__miniHeader">
+                              <div className="about-editorial__miniIcon">
+                                <Star className="h-5 w-5" />
+                              </div>
 
-                              <div className="pacman-row">
-                                <span className="pacman" />
-                                <span className="pacdot" />
+                              <div className="about-editorial__miniBadge">
+                                {t.status}
                               </div>
                             </div>
 
-                            <div className="game-divider my-4" />
-
-                            <div className="flex flex-wrap gap-2">
-                              <span className="game-chip">
-                                {language === "es" ? "Activo" : "Active"}
+                            <div className="mt-4 flex flex-wrap gap-2">
+                              <span className="manhwa-chip">
+                                <span className="manhwa-chip__text">{t.active}</span>
                               </span>
-                              <span className="game-chip">
-                                {language === "es" ? "Portfolio" : "Portfolio"}
+                              <span className="manhwa-chip">
+                                <span className="manhwa-chip__text">{t.portfolio}</span>
                               </span>
-                              <span className="game-chip">
-                                <Star className="h-3.5 w-3.5 text-fuchsia-200" />
-                                {language === "es" ? "Destacado" : "Featured"}
+                              <span className="manhwa-chip">
+                                <span className="manhwa-chip__text">{t.featured}</span>
                               </span>
                             </div>
                           </div>
@@ -472,9 +602,14 @@ export default function Projects({ language }: ProjectsProps) {
                 aria-label={`Go to project ${index + 1}`}
                 className={`transition-all duration-300 ${
                   isActive
-                    ? "h-3 w-10 rounded-full bg-gradient-to-r from-fuchsia-300 to-violet-300 shadow-[0_0_12px_rgba(244,114,182,0.35)]"
-                    : "h-3 w-3 rounded-full bg-white/20 hover:bg-white/35"
+                    ? "h-3 w-10 rounded-full shadow-[0_0_12px_rgba(216,111,159,0.25)]"
+                    : "h-3 w-3 rounded-full"
                 }`}
+                style={{
+                  background: isActive
+                    ? "linear-gradient(90deg, #ef9fc3 0%, #b59ae4 100%)"
+                    : "rgba(212, 187, 201, 0.7)",
+                }}
               />
             );
           })}
@@ -484,7 +619,7 @@ export default function Projects({ language }: ProjectsProps) {
       <AnimatePresence>
         {activeProject && activeProject.images?.length > 0 && (
           <motion.div
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-[#05050a]/82 px-3 py-4 backdrop-blur-xl md:px-6 md:py-6"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-[rgba(55,36,47,0.62)] px-3 py-4 backdrop-blur-xl md:px-6 md:py-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -496,27 +631,26 @@ export default function Projects({ language }: ProjectsProps) {
               animate="visible"
               exit="exit"
               onClick={(e) => e.stopPropagation()}
-              className="rpg-window console-shell arcade-corners relative flex h-[92vh] w-full max-w-6xl flex-col overflow-hidden"
+              className="manhwa-shell relative flex h-[92vh] w-full max-w-6xl flex-col overflow-hidden"
             >
-              <div className="rpg-window__bar console-topbar">
+              <div className="manhwa-shell__bar">
                 <div className="min-w-0">
-                  <p className="text-[11px] uppercase tracking-[0.24em] text-fuchsia-200/75 md:text-xs">
+                  <p
+                    className="text-[11px] uppercase tracking-[0.24em] md:text-xs"
+                    style={{ color: "var(--pink-ink)" }}
+                  >
                     {t.screenshots}
                   </p>
-                  <h3 className="mt-1 line-clamp-2 text-lg font-semibold text-white md:text-2xl">
+                  <h3
+                    className="mt-1 line-clamp-2 text-lg font-semibold md:text-2xl"
+                    style={{ color: "var(--text-ultra)" }}
+                  >
                     {activeProjectTitle}
                   </h3>
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <div className="pacman-row hidden sm:flex">
-                    <span className="pacman" />
-                    <span className="pacdot" />
-                    <span className="pacdot" />
-                    <span className="power-pellet" />
-                  </div>
-
-                  <div className="rpg-window__dots console-leds">
+                  <div className="manhwa-shell__dots">
                     <span />
                     <span />
                     <span />
@@ -533,15 +667,20 @@ export default function Projects({ language }: ProjectsProps) {
               </div>
 
               <div className="flex min-h-0 flex-1 flex-col gap-4 p-4 md:gap-5 md:p-6">
-                <div className="game-screen retro-screen relative flex min-h-0 flex-1 items-center justify-center overflow-hidden rounded-[1.5rem] px-3 py-4 md:px-6 md:py-6">
-                  <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.04),transparent_55%)]" />
+                <div
+                  className="relative flex min-h-0 flex-1 items-center justify-center overflow-hidden rounded-[1.5rem] border px-3 py-4 md:px-6 md:py-6"
+                  style={{
+                    borderColor: "var(--border-soft)",
+                    background:
+                      "linear-gradient(135deg, rgba(255,236,244,0.76), rgba(243,238,255,0.68), rgba(255,244,206,0.44))",
+                  }}
+                >
+                  <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.32),transparent_55%)]" />
 
                   <div className="pointer-events-none absolute left-4 top-4 z-10">
-                    <div className="pacman-row">
-                      <span className="pacman" />
-                      <span className="pacdot" />
-                      <span className="pacdot" />
-                      <span className="arcade-ghost arcade-ghost--blue" />
+                    <div className="manhwa-kicker">
+                      <ImageIcon className="h-3.5 w-3.5" />
+                      {t.preview}
                     </div>
                   </div>
 
@@ -554,7 +693,8 @@ export default function Projects({ language }: ProjectsProps) {
                       initial="hidden"
                       animate="visible"
                       exit="exit"
-                      className="relative z-10 mx-auto max-h-full w-auto max-w-full rounded-[1.25rem] border border-white/10 object-contain shadow-[0_14px_45px_rgba(0,0,0,0.35)]"
+                      className="relative z-10 mx-auto max-h-full w-auto max-w-full rounded-[1.25rem] border object-contain shadow-[0_14px_45px_rgba(0,0,0,0.18)]"
+                      style={{ borderColor: "rgba(255,255,255,0.72)" }}
                     />
                   </AnimatePresence>
 
@@ -580,19 +720,23 @@ export default function Projects({ language }: ProjectsProps) {
                 </div>
 
                 {activeProject.images.length > 1 && (
-                  <div className="game-card console-screen p-3 md:p-4">
+                  <div className="about-editorial__miniCard p-3 md:p-4">
                     <div className="mb-3 flex items-center justify-between gap-2">
                       <div className="flex items-center gap-2">
-                        <ImageIcon className="h-4 w-4 text-fuchsia-200" />
-                        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-fuchsia-200/85">
-                          {language === "es" ? "Miniaturas" : "Thumbnails"}
+                        <ImageIcon
+                          className="h-4 w-4"
+                          style={{ color: "var(--pink-ink)" }}
+                        />
+                        <p
+                          className="text-xs font-semibold uppercase tracking-[0.22em]"
+                          style={{ color: "var(--pink-ink)" }}
+                        >
+                          {t.thumbnails}
                         </p>
                       </div>
-
-                      <div className="arcade-ghost arcade-ghost--violet" />
                     </div>
 
-                    <div className="game-divider mb-4" />
+                    <div className="skills-feature-card__divider mb-4" />
 
                     <div className="flex gap-3 overflow-x-auto pb-1">
                       {activeProject.images.map((image, index) => {
@@ -603,10 +747,13 @@ export default function Projects({ language }: ProjectsProps) {
                             key={image}
                             onClick={() => setActiveImageIndex(index)}
                             className={`group relative shrink-0 overflow-hidden rounded-[1rem] border transition-all duration-300 ${
-                              isActive
-                                ? "border-fuchsia-300/40 shadow-[0_0_18px_rgba(244,114,182,0.16)]"
-                                : "border-white/10 opacity-75 hover:opacity-100"
+                              isActive ? "shadow-[0_0_18px_rgba(216,111,159,0.14)]" : "opacity-75 hover:opacity-100"
                             }`}
+                            style={{
+                              borderColor: isActive
+                                ? "rgba(216,111,159,0.45)"
+                                : "rgba(212, 187, 201, 0.45)",
+                            }}
                           >
                             <img
                               src={image}
@@ -616,8 +763,8 @@ export default function Projects({ language }: ProjectsProps) {
                             <div
                               className={`absolute inset-0 transition-all duration-300 ${
                                 isActive
-                                  ? "bg-fuchsia-400/10"
-                                  : "bg-black/10 group-hover:bg-black/0"
+                                  ? "bg-[rgba(216,111,159,0.10)]"
+                                  : "bg-black/5 group-hover:bg-black/0"
                               }`}
                             />
                           </button>
