@@ -3,8 +3,8 @@
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Quicksand&weight=700&size=36&duration=3000&pause=1000&color=a47af0&center=true&vCenter=true&width=600&height=70&lines=Anahí+Lozano;Full+Stack+Developer;Web+%26+Mobile+Engineer)](https://git.io/typing-svg)
 
   <h2>🌟 Full-Stack Creative Portfolio 🌟</h2>
-https://porfolio-six-smoky.vercel.app/
 
+ <h2> https://porfolio-six-smoky.vercel.app/ </h2>
   
   <p>
     <b>A modern, responsive, and highly interactive developer portfolio featuring a 3D animated voxel cat mascot!</b>
