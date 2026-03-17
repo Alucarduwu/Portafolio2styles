@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Languages, Sparkles, Heart, Star } from "lucide-react";
+import { Languages, Sparkles, Heart, Star, Sun, Moon } from "lucide-react";
 import type { Language } from "../App";
 
 interface NavbarProps {
   language: Language;
   setLanguage: (lang: Language) => void;
+  theme: "light" | "dark";
+  setTheme: (theme: "light" | "dark") => void;
 }
 
 const content = {
@@ -25,7 +27,7 @@ const content = {
   },
 };
 
-export default function Navbar({ language, setLanguage }: NavbarProps) {
+export default function Navbar({ language, setLanguage, theme, setTheme }: NavbarProps) {
   const t = content[language];
   const [isVisible, setIsVisible] = useState(true);
   const lastScrollY = useRef(0);
@@ -80,9 +82,9 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
               borderRadius: "2rem",
               border: "1px solid var(--border-soft)",
               background:
-                "linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,248,252,0.92))",
+                "var(--panel)",
               boxShadow:
-                "0 22px 50px rgba(227, 191, 210, 0.18), 0 0 0 1px rgba(255,255,255,0.78) inset",
+                "0 22px 50px var(--shadow-soft), 0 0 0 1px var(--ui-highlight) inset",
               backdropFilter: "blur(14px)",
             }}
           >
@@ -98,9 +100,9 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
                   style={{
                     border: "1px solid var(--border-strong)",
                     background:
-                      "linear-gradient(135deg, rgba(255,228,239,0.98), rgba(239,232,255,0.95), rgba(255,244,206,0.82))",
+                      "var(--panel)",
                     color: "var(--pink-ink)",
-                    boxShadow: "0 10px 22px rgba(231,189,211,0.16)",
+                    boxShadow: "0 10px 22px var(--shadow-soft)",
                   }}
                 >
                   <Sparkles className="h-5 w-5" />
@@ -127,8 +129,8 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
                   className="flex items-center gap-1 rounded-full px-2 py-2"
                   style={{
                     border: "1px solid var(--border-soft)",
-                    background: "rgba(255,255,255,0.78)",
-                    boxShadow: "0 8px 20px rgba(232,201,216,0.12)",
+                    background: "var(--panel)",
+                    boxShadow: "0 8px 20px var(--shadow-soft)",
                   }}
                 >
                   {navLinks.map((item) => (
@@ -157,9 +159,9 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
                     className="rounded-full px-4 py-2 text-sm font-black tracking-[0.02em] transition-all duration-200 hover:-translate-y-0.5 hover:scale-[1.02]"
                     style={{
                       background:
-                        "linear-gradient(135deg,#ffd0e3 0%,#eadfff 54%,#ffecc1 100%)",
+                        "linear-gradient(135deg,var(--pink-strong) 0%,var(--violet-strong) 54%,var(--gold-cream) 100%)",
                       color: "var(--text-strong)",
-                      boxShadow: "0 10px 22px rgba(231,189,211,0.18)",
+                      boxShadow: "0 10px 22px var(--shadow-soft)",
                     }}
                   >
                     {t.contact}
@@ -170,8 +172,8 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
                   className="flex items-center gap-2 rounded-full px-2 py-2"
                   style={{
                     border: "1px solid var(--border-soft)",
-                    background: "rgba(255,255,255,0.8)",
-                    boxShadow: "0 8px 20px rgba(232,201,216,0.12)",
+                    background: "var(--panel)",
+                    boxShadow: "0 8px 20px var(--shadow-soft)",
                   }}
                 >
                   <div
@@ -205,9 +207,9 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
                               className="absolute inset-0 rounded-full"
                               style={{
                                 background:
-                                  "linear-gradient(135deg,#ffd9e8 0%,#f0e5ff 55%,#fff4cf 100%)",
+                                  "linear-gradient(135deg,var(--pink) 0%,var(--violet) 55%,var(--butter) 100%)",
                                 boxShadow:
-                                  "0 6px 16px rgba(231,189,211,0.18)",
+                                  "0 6px 16px var(--shadow-soft)",
                               }}
                             />
                           )}
@@ -227,6 +229,20 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
                     })}
                   </div>
                 </div>
+
+                <button
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                  className="flex items-center justify-center p-2.5 rounded-full transition-all duration-300 hover:-translate-y-0.5"
+                  style={{
+                    border: "1px solid var(--border-soft)",
+                    background: "var(--panel)",
+                    boxShadow: "0 8px 20px var(--shadow-soft)",
+                    color: "var(--pink-ink)"
+                  }}
+                  title={theme === "light" ? "Switch to Dark Mode" : "Switch to Light Mode"}
+                >
+                  {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+                </button>
               </div>
 
               <div className="md:hidden">
@@ -234,8 +250,8 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
                   className="flex items-center gap-2 rounded-full px-2 py-2"
                   style={{
                     border: "1px solid var(--border-soft)",
-                    background: "rgba(255,255,255,0.82)",
-                    boxShadow: "0 8px 20px rgba(232,201,216,0.12)",
+                    background: "var(--panel)",
+                    boxShadow: "0 8px 20px var(--shadow-soft)",
                   }}
                 >
                   <div
@@ -269,9 +285,9 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
                               className="absolute inset-0 rounded-full"
                               style={{
                                 background:
-                                  "linear-gradient(135deg,#ffd9e8 0%,#f0e5ff 55%,#fff4cf 100%)",
+                                  "linear-gradient(135deg,var(--pink) 0%,var(--violet) 55%,var(--butter) 100%)",
                                 boxShadow:
-                                  "0 6px 16px rgba(231,189,211,0.18)",
+                                  "0 6px 16px var(--shadow-soft)",
                               }}
                             />
                           )}
@@ -291,13 +307,26 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
                     })}
                   </div>
                 </div>
+                
+                <button
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                  className="mx-auto mt-2 flex items-center justify-center p-2 rounded-full transition-all duration-300 hover:-translate-y-0.5"
+                  style={{
+                    border: "1px solid var(--border-soft)",
+                    background: "var(--panel)",
+                    boxShadow: "0 8px 20px var(--shadow-soft)",
+                    color: "var(--pink-ink)"
+                  }}
+                >
+                  {theme === "dark" ? <Sun className="h-3.5 w-3.5" /> : <Moon className="h-3.5 w-3.5" />}
+                </button>
               </div>
             </div>
 
             <div
               className="hidden items-center justify-between gap-4 px-5 py-3 md:flex"
               style={{
-                borderTop: "1px solid rgba(255,255,255,0.25)",
+                borderTop: "1px solid var(--ui-highlight)",
               }}
             >
               <div
@@ -327,7 +356,7 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
                 href="#about"
                 className="rounded-2xl px-2 py-2.5 text-center text-[11px] font-black transition-all duration-200 hover:-translate-y-0.5"
                 style={{
-                  background: "rgba(255,255,255,0.78)",
+                  background: "var(--panel)",
                   color: "var(--text-main)",
                 }}
               >
@@ -338,7 +367,7 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
                 href="#projects"
                 className="rounded-2xl px-2 py-2.5 text-center text-[11px] font-black transition-all duration-200 hover:-translate-y-0.5"
                 style={{
-                  background: "rgba(255,255,255,0.78)",
+                  background: "var(--panel)",
                   color: "var(--text-main)",
                 }}
               >
@@ -349,7 +378,7 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
                 href="#skills"
                 className="rounded-2xl px-2 py-2.5 text-center text-[11px] font-black transition-all duration-200 hover:-translate-y-0.5"
                 style={{
-                  background: "rgba(255,255,255,0.78)",
+                  background: "var(--panel)",
                   color: "var(--text-main)",
                 }}
               >
@@ -358,10 +387,10 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
 
               <a
                 href="#contact"
-                className="rounded-2xl px-2 py-2.5 text-center text-[11px] font-black shadow-[0_8px_18px_rgba(231,189,211,0.16)]"
+                className="rounded-2xl px-2 py-2.5 text-center text-[11px] font-black shadow-[0_8px_18px_var(--shadow-soft)]"
                 style={{
                   background:
-                    "linear-gradient(135deg,#ffd0e3 0%,#eadfff 54%,#ffecc1 100%)",
+                    "linear-gradient(135deg,var(--pink-strong) 0%,var(--violet-strong) 54%,var(--gold-cream) 100%)",
                   color: "var(--text-strong)",
                 }}
               >
