@@ -1,5 +1,6 @@
 <div align="center">
-  <img src="https://capsules-spot.pcooo.vercel.app/spot?type=rect&text=Anah%C3%AD%20Lozano&fontAlign=center&fontAlignY=45&fontSize=50&fontColor=fff&color=a47af0&bg=0f0818&animation=twinkling" />
+
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Quicksand&weight=700&size=36&duration=3000&pause=1000&color=a47af0&center=true&vCenter=true&width=600&height=70&lines=Anahí+Lozano;Full+Stack+Developer;Web+%26+Mobile+Engineer)](https://git.io/typing-svg)
 
   <h2>🌟 Full-Stack Creative Portfolio 🌟</h2>
   
