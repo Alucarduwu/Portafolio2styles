@@ -668,12 +668,7 @@ export default function Projects({ language }: ProjectsProps) {
 
               <div className="flex min-h-0 flex-1 flex-col gap-4 p-4 md:gap-5 md:p-6">
                 <div
-                  className="relative flex min-h-0 flex-1 items-center justify-center overflow-hidden rounded-[1.5rem] border px-3 py-4 md:px-6 md:py-6"
-                  style={{
-                    borderColor: "var(--border-soft)",
-                    background:
-                      "linear-gradient(135deg, rgba(255,236,244,0.76), rgba(243,238,255,0.68), rgba(255,244,206,0.44))",
-                  }}
+                  className="relative flex min-h-0 flex-1 items-center justify-center overflow-hidden rounded-[1.5rem] border px-3 py-4 md:px-6 md:py-6 border-[var(--border-soft)] bg-[linear-gradient(135deg,rgba(255,236,244,0.76),rgba(243,238,255,0.68),rgba(255,244,206,0.44))] dark:bg-[linear-gradient(135deg,rgba(8,4,16,0.99),rgba(6,3,12,0.98))]"
                 >
                   <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.32),transparent_55%)]" />
 

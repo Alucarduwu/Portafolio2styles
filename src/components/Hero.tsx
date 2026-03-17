@@ -203,13 +203,8 @@ export default function Hero({ language }: HeroProps) {
                 initial="hidden"
                 animate="visible"
                 variants={fadeUp}
-                className="mt-6 rounded-[1.8rem] border p-5 md:p-6"
-                style={{
-                  borderColor: "var(--border-soft)",
-                  background:
-                    "linear-gradient(135deg, rgba(255,236,244,0.9), rgba(243,238,255,0.78), rgba(255,244,206,0.58))",
-                  boxShadow: "0 14px 28px rgba(227, 191, 210, 0.12)",
-                }}
+                className="mt-6 rounded-[1.8rem] border p-5 md:p-6 border-[rgba(233,194,214,0.72)] dark:border-[rgba(120,80,185,0.35)] bg-[linear-gradient(135deg,rgba(255,236,244,0.9),rgba(243,238,255,0.78),rgba(255,244,206,0.58))] dark:bg-[linear-gradient(135deg,rgba(12,6,22,0.97),rgba(16,8,30,0.97),rgba(10,5,20,0.97))]"
+                style={{ boxShadow: "var(--shadow-soft)" }}
               >
                 <div className="mb-4 flex flex-wrap items-center justify-between gap-4">
                   <div className="flex flex-wrap gap-2">
